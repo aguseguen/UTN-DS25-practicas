@@ -1,0 +1,27 @@
+table, tr, td{
+    border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+}
+td {
+    width: 1800px;
+    height: 50px;
+    background-color: aquamarine;
+}
+
+td#fila2C3 {
+    background-color: blue;
+}
+tr.fila2 td {
+    background-color: blueviolet;
+}
+td.colum3 {
+    background-color: bisque;
+}
+td#fila3C2 {
+    background-color: rgb(145, 100, 42);
+}
+td.esquina{
+    background-color: orange;
+}

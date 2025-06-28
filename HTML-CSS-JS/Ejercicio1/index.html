@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curriculum Vitae</title>
+    <link rel="stylesheet" href="/UTN-DS25-practicas/HTML-CSS-JS/Ejercicio4/Ej1/index.css">
 </head>
 <body>
-    <header>
-        <h1>Curriculum Vitae</h1> 
-        <nav>
-        <h3><a href="estudios.html"> Estudios</a> |
-        <a href="explab.html"> Experiencia Laboral</a> |
-        <a href="hobbies.html"> Hobbies </a>
-        </h3>
-        </nav>
-       <section>
+    <div>
+        <header>
+            <h1 id="header">Curriculum Vitae</h1> 
+                <div>
+                    <button> <a href="estudios.html"> Estudios</a> </button>
+                    <button> <a href="explab.html"> Experiencia Laboral</a> </button>
+                    <button> <a href="hobbies.html"> Hobbies </a> </button>
+                </div>
+        </header>
+    </div>
+    <div class="content">
         <h2>Información Personal</h2>
-        <p>Nombre completo: Agustina Pilar Egüen</p>
-        <p> Edad: 20 años</p>
-        <p> Dirección: 30 n° 1774, La Plata </p>
-        <p> Email: agustinaeguen3@gmail.com</p>
-        <p> </p>
-       </section>
-    </header>
+        <ul id="list">
+            <li><span>Nombre completo</span>: Agustina Pilar Egüen</li>
+            <li><span> Edad</span>: 20 años</li>
+            <li><span> Dirección</span>: 30 n° 1774, La Plata </li> 
+            <li><span> Email</span>: agustinaeguen3@gmail.com</li> 
+        </ul>
+    </div>
 </body>
 </html>

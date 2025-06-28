@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+}
+
+header {
+    color:aliceblue;
+    background-color: rgb(250, 152, 168);
+    border-bottom: 3px solid gray;
+    margin: 0;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 6px 10px pink;
+}
+h2 {
+    margin: 10px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-shadow: 0px 0px 3px gray;
+    
+}
+
+#content {
+    margin: 0;
+    height: 100vh;
+}
+header button {
+    background-color:rgb(251, 239, 250);
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px gray;
+}
+button a {
+    all: unset;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(247, 166, 179);
+}
+li {
+    margin:5px;
+    padding: 10px;
+    color: black;
+    font-size: large; 
+    font-family: 'Times New Roman', Times, serif;
+}
+h5{
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+#periodo {
+    padding: 5px;
+    margin: 10px;
+    font-style: italic;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: rgb(255, 130, 151);
+}
+ul{
+    list-style-type:circle;
+    background-color: rgb(247, 247, 229);
+}

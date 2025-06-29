@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - El Rincón Lector</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <img src="imagenes/logo.png" alt="Logo El Rincón Lector" class="logo-principal">
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="secciones/psicologia.html">Psicología</a></li>
+            <li><a href="secciones/romance.html">Romance Juvenil</a></li>
+            <li><a href="secciones/fantasia.html">Fantasía</a></li>
+            <li><a href="secciones/ciencia-ficcion.html">Ciencia Ficción</a></li>
+            <li><a href="registro.html">Regístrate</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h2>Contacto</h2>
+        <p>¿Tienes alguna duda o sugerencia? ¡Nos encantaría escucharte!</p>
+        
+        <div class="pagina-contacto">
+            <div class="info-contacto">
+                <h3>Nuestra Librería</h3>
+                <p><strong>Dirección:</strong><br>
+                Avenida Siempreviva 742<br>
+                La Plata, Buenos Aires, Argentina</p>
+                <p><strong>Teléfono:</strong><br>
+                (0221) 456-7890</p>
+                <p><strong>Email:</strong><br>
+                hola@elrincondellector.com</p>
+                <p><strong>Horarios:</strong><br>
+                Lunes a Sábados de 9:00 a 20:00 hs.</p>
+            </div>
+            
+            <form class="contact-form">
+                <h3>Envíanos un Mensaje</h3>
+                <div class="form-group">
+                    <label for="nombre">Tu Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Tu Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 El Rincón Lector. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

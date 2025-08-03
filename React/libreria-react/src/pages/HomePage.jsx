@@ -1,35 +1,64 @@
-import BookCard from "../components/BookCard";
+import { Link } from 'react-router-dom'; 
 
-const librosDeFantasia = [
+const librosDestacados = [
     {
-        id:1,
+        id: 1,
+        genero: 'Psicología',
+        titulo: 'Historias de diván',
+        autor: 'Gabriel Rolón',
+        imagen: '/imagenes/portadas/rolon-divan.jpg',
+        linkTo: '/psicologia' 
+    },
+    {
+        id: 2,
+        genero: 'Romance Juvenil',
+        titulo: 'Boulevard',
+        autor: 'Flor M. Salvador',
+        imagen: '/imagenes/portadas/salvador-boulevard.jpg',
+        linkTo: '/romance'
+    },
+    {
+        id: 3,
+        genero: 'Fantasía',
         titulo: 'Cuarta Ala',
         autor: 'Rebecca Yarros',
-        descripcion: 'Violet Sorrengail debía vivir una vida tranquila, pero por orden de su madre, se une a los jinetes de dragones.',
-        imagen: '/imagenes/portadas/cuarta-ala.jpg'
+        imagen: '/imagenes/portadas/cuarta-ala.jpg',
+        linkTo: '/fantasia'
     },
-
+    {
+        id: 4,
+        genero: 'Ciencia Ficción',
+        titulo: 'Dune',
+        autor: 'Frank Herbert',
+        imagen: '/imagenes/portadas/dune.jpg',
+        linkTo: '/ciencia-ficcion'
+    }
 ];
 
+
 function HomePage() {
-    return (
-        <div>
-            <h2>Fantasia</h2>
-            <p>Viaja a mundos imposibles, donde la magia es real y la aventura te espera en cada página.</p>
-        
-            <div className="book-grid">
-                {librosDeFantasia.map(libro => (
-                    <BookCard 
-                        key={libro.id}
-                        titulo={libro.titulo}
-                        autor={libro.autor}
-                        descripcion={libro.descripcion}
-                        imagen={libro.imagen}
-                    />
-                ))}
-            </div>
-        </div>
-    );
-};
+return (
+    <>
+        <h2>Novedades por Género</h2>
+
+        {/* 2. Uso .map() para recorrer los datos y crear una sección por cada libro */}
+        {librosDestacados.map(libro => (
+            <section key={libro.id} className="genre-section">
+                
+                {/* 3. Uso el componente <Link> para que el título sea un enlace */}
+                <h3>
+                    <Link to={libro.linkTo}>{libro.genero}</Link>
+                </h3>
+
+                <div className="featured-book">
+                    <img src={libro.imagen} alt={`Portada de ${libro.titulo}`} />
+                    <h4>{libro.titulo}</h4>
+                    <p>{libro.autor}</p>
+                </div>
+            </section>
+        ))}
+    </>
+);
+}
 
 export default HomePage;

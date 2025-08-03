@@ -1,19 +1,22 @@
-import Header from './components/header';
-import Footer from './components/footer';
-import HomePage from './pages/HomePage';
-
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom'; 
+import '../src/App.css'
 
 function App() {
-
   return (
     <>
       <Header />
-        <main className='container'>
-          <h2>Contenido principal</h2>
-        </main>
+      <Nav /> 
+
+      <main className="container">
+        <Outlet /> 
+      </main>
+      
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

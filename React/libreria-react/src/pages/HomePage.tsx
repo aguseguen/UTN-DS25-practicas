@@ -1,64 +1,60 @@
-import { Link } from 'react-router-dom'; 
-
-const librosDestacados = [
-    {
-        id: 1,
-        genero: 'Psicología',
-        titulo: 'Historias de diván',
-        autor: 'Gabriel Rolón',
-        imagen: '/imagenes/portadas/rolon-divan.jpg',
-        linkTo: '/psicologia' 
-    },
-    {
-        id: 2,
-        genero: 'Romance Juvenil',
-        titulo: 'Boulevard',
-        autor: 'Flor M. Salvador',
-        imagen: '/imagenes/portadas/salvador-boulevard.jpg',
-        linkTo: '/romance'
-    },
-    {
-        id: 3,
-        genero: 'Fantasía',
-        titulo: 'Cuarta Ala',
-        autor: 'Rebecca Yarros',
-        imagen: '/imagenes/portadas/cuarta-ala.jpg',
-        linkTo: '/fantasia'
-    },
-    {
-        id: 4,
-        genero: 'Ciencia Ficción',
-        titulo: 'Dune',
-        autor: 'Frank Herbert',
-        imagen: '/imagenes/portadas/dune.jpg',
-        linkTo: '/ciencia-ficcion'
-    }
-];
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Libro } from '../types/libro.types'
 
 
 function HomePage() {
-return (
+
+  const [libros, setLibros] = useState<Libro[]>([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchLibrosDestacados = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/libros/destacados');
+        if (!response.ok) {
+          throw new Error('La respuesta de la red no fue exitosa');
+        }
+        const data = await response.json();
+        setLibros(data);
+      } catch (error) {
+        console.error("Error al cargar los libros destacados:", error);
+        setError("No se pudieron cargar los libros. ¿El servidor del backend está funcionando?");
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    fetchLibrosDestacados();
+  }, []);
+
+  if (error) {
+    return <div className="container"><p style={{ color: 'red' }}>{error}</p></div>;
+  }
+
+  if (cargando) {
+    return <div className="container"><p>Cargando libros...</p></div>;
+  }
+
+  return (
     <>
-        <h2>Novedades por Género</h2>
+      <h2>Novedades por Género</h2>
 
-        {/* 2. Uso .map() para recorrer los datos y crear una sección por cada libro */}
-        {librosDestacados.map(libro => (
-            <section key={libro.id} className="genre-section">
-                
-                {/* 3. Uso el componente <Link> para que el título sea un enlace */}
-                <h3>
-                    <Link to={libro.linkTo}>{libro.genero}</Link>
-                </h3>
-
-                <div className="featured-book">
-                    <img src={libro.imagen} alt={`Portada de ${libro.titulo}`} />
-                    <h4>{libro.titulo}</h4>
-                    <p>{libro.autor}</p>
-                </div>
-            </section>
-        ))}
+      {libros.map(libro => (
+        <section key={libro.id} className="genre-section">
+          <h3>
+            <Link to={libro.linkTo}>{libro.genero}</Link>
+          </h3>
+          <div className="featured-book">
+            <img src={libro.imagen} alt={`Portada de ${libro.titulo}`} />
+            <h4>{libro.titulo}</h4>
+            <p>{libro.autor}</p>
+          </div>
+        </section>
+      ))}
     </>
-);
+  );
 }
 
 export default HomePage;

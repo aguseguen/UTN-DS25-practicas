@@ -6,16 +6,16 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // 2. Importar el Layout Principal (la plantilla)
-import App from './App.js';
+import App from './App';
 
 // 3. Importar TODOS los componentes de página que creaste
-import HomePage from './pages/HomePage.js';
-import PsicologiaPage from './pages/PsicologiaPage.js';
-import RomancePage from './pages/RomancePage.js';
-import FantasiaPage from './pages/FantasiaPage.js';
-import CienciaFiccionPage from './pages/CienciaFiccionPage.js';
-import ContactoPage from './pages/ContactoPage.js';
-import RegistroPage from './pages/RegistroPage.js';
+import HomePage from './pages/HomePage';
+import PsicologiaPage from './pages/PsicologiaPage';
+import RomancePage from './pages/RomancePage';
+import FantasiaPage from './pages/FantasiaPage';
+import CienciaFiccionPage from './pages/CienciaFiccionPage';
+import ContactoPage from './pages/ContactoPage';
+import RegistroPage from './pages/RegistroPage';
 
 // 4. Crear el "mapa" de rutas de tu aplicación
 const router = createBrowserRouter([

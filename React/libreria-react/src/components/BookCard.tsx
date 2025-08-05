@@ -1,4 +1,12 @@
-function BookCard ({imagen, titulo, autor, descripcion}) {
+type BookCard = {
+    imagen: string;
+    titulo: string;
+    autor: string;
+    descripcion: string;
+};
+
+
+function BookCard ({imagen, titulo, autor, descripcion}: BookCard) {
     return (
         <div className="book-card">
             <img src={imagen} alt={'Portada de ${titulo}'} />

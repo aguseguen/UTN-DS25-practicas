@@ -6,16 +6,16 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // 2. Importar el Layout Principal (la plantilla)
-import App from './App.jsx';
+import App from './App.js';
 
 // 3. Importar TODOS los componentes de página que creaste
-import HomePage from './pages/HomePage.jsx';
-import PsicologiaPage from './pages/PsicologiaPage.jsx';
-import RomancePage from './pages/RomancePage.jsx';
-import FantasiaPage from './pages/FantasiaPage.jsx';
-import CienciaFiccionPage from './pages/CienciaFiccionPage.jsx';
-import ContactoPage from './pages/ContactoPage.jsx';
-import RegistroPage from './pages/RegistroPage.jsx';
+import HomePage from './pages/HomePage.js';
+import PsicologiaPage from './pages/PsicologiaPage.js';
+import RomancePage from './pages/RomancePage.js';
+import FantasiaPage from './pages/FantasiaPage.js';
+import CienciaFiccionPage from './pages/CienciaFiccionPage.js';
+import ContactoPage from './pages/ContactoPage.js';
+import RegistroPage from './pages/RegistroPage.js';
 
 // 4. Crear el "mapa" de rutas de tu aplicación
 const router = createBrowserRouter([
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
 ]);
 
 // 5. Iniciar la aplicación con el router
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

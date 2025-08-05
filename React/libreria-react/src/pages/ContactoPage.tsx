@@ -35,7 +35,7 @@ function ContactoPage() {
             </div>
             <div className="form-group">
                 <label htmlFor="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                <textarea id="mensaje" name="mensaje" rows={6} required></textarea>
             </div>
             <button type="submit" className="submit-btn">Enviar Mensaje</button>
         </form>

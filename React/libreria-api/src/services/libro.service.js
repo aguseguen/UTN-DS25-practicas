@@ -1,9 +1,17 @@
 import { libros, librosDestacados } from '../data/libros.mock.js'
 
 export const getLibrosPorGenero = (genero) => {
-    return libros.filter(libros.genero.toLowerCase() === genero.toLowerCase());
+    const generoNormalizado = genero.replace(/-/g, ' ');
+
+    return libros.filter(libro => 
+        libro.genero && libro.genero.toLowerCase() === generoNormalizado.toLowerCase()
+    );
 };
 
 export const getLibrosDestacados = () => {
     return librosDestacados;
+};
+
+export const getTodosLosLibros = () => {
+    return libros;
 };

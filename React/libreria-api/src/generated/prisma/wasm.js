@@ -134,6 +134,7 @@ exports.Prisma.LibroScalarFieldEnum = {
   genero: 'genero',
   descripcion: 'descripcion',
   imagen: 'imagen',
+  seccion: 'seccion',
   userId: 'userId',
   autorId: 'autorId',
   createdAt: 'createdAt'
@@ -161,7 +162,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Seccion = exports.$Enums.Seccion = {
+  Ciencia_Ficcion: 'Ciencia_Ficcion',
+  Fantasia: 'Fantasia',
+  Psicologia: 'Psicologia',
+  Romance_Juvenil: 'Romance_Juvenil'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

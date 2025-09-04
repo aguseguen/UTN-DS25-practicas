@@ -30,6 +30,25 @@ export type Libro = $Result.DefaultSelection<Prisma.$LibroPayload>
 export type Autor = $Result.DefaultSelection<Prisma.$AutorPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Seccion: {
+  Ciencia_Ficcion: 'Ciencia_Ficcion',
+  Fantasia: 'Fantasia',
+  Psicologia: 'Psicologia',
+  Romance_Juvenil: 'Romance_Juvenil'
+};
+
+export type Seccion = (typeof Seccion)[keyof typeof Seccion]
+
+}
+
+export type Seccion = $Enums.Seccion
+
+export const Seccion: typeof $Enums.Seccion
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -2233,6 +2252,7 @@ export namespace Prisma {
     genero: string | null
     descripcion: string | null
     imagen: string | null
+    seccion: $Enums.Seccion | null
     userId: number | null
     autorId: number | null
     createdAt: Date | null
@@ -2244,6 +2264,7 @@ export namespace Prisma {
     genero: string | null
     descripcion: string | null
     imagen: string | null
+    seccion: $Enums.Seccion | null
     userId: number | null
     autorId: number | null
     createdAt: Date | null
@@ -2255,6 +2276,7 @@ export namespace Prisma {
     genero: number
     descripcion: number
     imagen: number
+    seccion: number
     userId: number
     autorId: number
     createdAt: number
@@ -2280,6 +2302,7 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
+    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
@@ -2291,6 +2314,7 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
+    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
@@ -2302,6 +2326,7 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
+    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
@@ -2400,6 +2425,7 @@ export namespace Prisma {
     genero: string
     descripcion: string | null
     imagen: string | null
+    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt: Date
@@ -2430,6 +2456,7 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
+    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
@@ -2443,6 +2470,7 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
+    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
@@ -2456,6 +2484,7 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
+    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
@@ -2469,12 +2498,13 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
+    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
   }
 
-  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "createdAt", ExtArgs["result"]["libro"]>
+  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "seccion" | "userId" | "autorId" | "createdAt", ExtArgs["result"]["libro"]>
   export type LibroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
@@ -2500,6 +2530,7 @@ export namespace Prisma {
       genero: string
       descripcion: string | null
       imagen: string | null
+      seccion: $Enums.Seccion
       userId: number
       autorId: number
       createdAt: Date
@@ -2933,6 +2964,7 @@ export namespace Prisma {
     readonly genero: FieldRef<"Libro", 'String'>
     readonly descripcion: FieldRef<"Libro", 'String'>
     readonly imagen: FieldRef<"Libro", 'String'>
+    readonly seccion: FieldRef<"Libro", 'Seccion'>
     readonly userId: FieldRef<"Libro", 'Int'>
     readonly autorId: FieldRef<"Libro", 'Int'>
     readonly createdAt: FieldRef<"Libro", 'DateTime'>
@@ -4485,6 +4517,7 @@ export namespace Prisma {
     genero: 'genero',
     descripcion: 'descripcion',
     imagen: 'imagen',
+    seccion: 'seccion',
     userId: 'userId',
     autorId: 'autorId',
     createdAt: 'createdAt'
@@ -4576,6 +4609,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Seccion'
+   */
+  export type EnumSeccionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seccion'>
+    
+
+
+  /**
+   * Reference to a field of type 'Seccion[]'
+   */
+  export type ListEnumSeccionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seccion[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -4658,6 +4705,7 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
@@ -4671,6 +4719,7 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
+    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
@@ -4687,6 +4736,7 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
@@ -4700,6 +4750,7 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
+    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
@@ -4719,6 +4770,7 @@ export namespace Prisma {
     genero?: StringWithAggregatesFilter<"Libro"> | string
     descripcion?: StringNullableWithAggregatesFilter<"Libro"> | string | null
     imagen?: StringNullableWithAggregatesFilter<"Libro"> | string | null
+    seccion?: EnumSeccionWithAggregatesFilter<"Libro"> | $Enums.Seccion
     userId?: IntWithAggregatesFilter<"Libro"> | number
     autorId?: IntWithAggregatesFilter<"Libro"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Libro"> | Date | string
@@ -4843,6 +4895,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutLibroInput
     autor: AutorCreateNestedOneWithoutLibroInput
@@ -4854,6 +4907,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt?: Date | string
@@ -4864,6 +4918,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
@@ -4875,6 +4930,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4886,6 +4942,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt?: Date | string
@@ -4896,6 +4953,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4905,6 +4963,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5109,6 +5168,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumSeccionFilter<$PrismaModel = never> = {
+    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
+    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    not?: NestedEnumSeccionFilter<$PrismaModel> | $Enums.Seccion
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -5130,6 +5196,7 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
+    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
@@ -5147,6 +5214,7 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
+    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
@@ -5158,6 +5226,7 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
+    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
@@ -5185,6 +5254,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumSeccionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
+    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    not?: NestedEnumSeccionWithAggregatesFilter<$PrismaModel> | $Enums.Seccion
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSeccionFilter<$PrismaModel>
+    _max?: NestedEnumSeccionFilter<$PrismaModel>
   }
 
   export type AutorCountOrderByAggregateInput = {
@@ -5291,6 +5370,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type EnumSeccionFieldUpdateOperationsInput = {
+    set?: $Enums.Seccion
   }
 
   export type UserUpdateOneRequiredWithoutLibroNestedInput = {
@@ -5459,6 +5542,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumSeccionFilter<$PrismaModel = never> = {
+    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
+    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    not?: NestedEnumSeccionFilter<$PrismaModel> | $Enums.Seccion
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5487,11 +5577,22 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumSeccionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
+    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
+    not?: NestedEnumSeccionWithAggregatesFilter<$PrismaModel> | $Enums.Seccion
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSeccionFilter<$PrismaModel>
+    _max?: NestedEnumSeccionFilter<$PrismaModel>
+  }
+
   export type LibroCreateWithoutUserInput = {
     titulo: string
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     createdAt?: Date | string
     autor: AutorCreateNestedOneWithoutLibroInput
   }
@@ -5502,6 +5603,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     autorId: number
     createdAt?: Date | string
   }
@@ -5541,6 +5643,7 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
@@ -5643,6 +5746,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutLibroInput
   }
@@ -5653,6 +5757,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     userId: number
     createdAt?: Date | string
   }
@@ -5689,6 +5794,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     autorId: number
     createdAt?: Date | string
   }
@@ -5698,6 +5804,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
   }
@@ -5708,6 +5815,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5718,6 +5826,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5728,6 +5837,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    seccion: $Enums.Seccion
     userId: number
     createdAt?: Date | string
   }
@@ -5737,6 +5847,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
   }
@@ -5747,6 +5858,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5757,6 +5869,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

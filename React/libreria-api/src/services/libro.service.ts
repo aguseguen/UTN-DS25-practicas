@@ -1,10 +1,11 @@
 import prisma from '../config/prisma';
-import { Libro, Autor } from '../generated/prisma'; // tipos que genera Prisma
+import { Libro, Autor, Seccion } from '../generated/prisma'; // tipos que genera Prisma
 
 const mapLibro = (r: any): Libro & { autor: string } => ({
   id: r.id,
   titulo: r.titulo,
   genero: r.genero,
+  seccion: r.seccion,
   autor: r.autor?.nombre ?? '(sin autor)',
   descripcion: r.descripcion ?? '',
   imagen: r.imagen ?? '',
@@ -37,6 +38,7 @@ export async function getLibroById(id: number): Promise<Libro & { autor: string 
 export async function createLibro(data: {
   titulo: string;
   genero: string;
+  seccion: string;
   descripcion?: string;
   imagen?: string;
   autorId: number;
@@ -49,9 +51,19 @@ export async function createLibro(data: {
     error.statusCode = 404;
     throw error;
   }
+  // Validar Seccion
+    if (!Object.values(Seccion).includes(data.seccion as Seccion)) {
+    const error = new Error('Sección inválida') as any;
+    error.statusCode = 400;
+    throw error;
+  }
+  const seccionEnum = data.seccion as Seccion;
 
   const row = await prisma.libro.create({
-    data,
+    data: {
+      ...data,
+      seccion: seccionEnum,
+    },
     include: { autor: true },
   });
   return mapLibro(row);

@@ -219,3 +219,13 @@ a {
 .site-footer a {
     color: #E89A7A;
 }
+
+.app-container {
+  display: flex; /* 1. Activa Flexbox */
+  flex-direction: column; /* 2. Apila los elementos verticalmente */
+  min-height: 100vh; /* 3. ¡La clave! El contenedor ocupa AL MENOS el 100% del alto de la pantalla */
+}
+
+.main-content {
+  flex-grow: 1; /* 4. ¡La otra clave! Hace que el contenido principal crezca para ocupar todo el espacio sobrante, empujando el footer hacia abajo */
+}

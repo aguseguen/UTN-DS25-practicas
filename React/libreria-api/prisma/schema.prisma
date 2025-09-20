@@ -20,7 +20,7 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   nombre    String
-  contrasena String
+  password  String
   libro Libro[]
   createdAt DateTime @default(now())
 }

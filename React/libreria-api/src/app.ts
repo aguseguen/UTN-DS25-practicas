@@ -1,9 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { libroRoutes } from './routes/libro.routes';
 import { userRoutes } from './routes/user.routes';
 import { authRoutes } from './routes/auth.routes';
 import { logRequest } from './middlewares/logger.middleware';
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -18,6 +21,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// Logger Middleware
 app.use(logRequest); 
 
 //Rutas

@@ -18,10 +18,14 @@ router.get(
     userController.getUserById); 
 router.post(
     '/',
+    authenticate,
+    authorize('ADMIN'),
     validate(createUserSchema),
     userController.createUser);
 router.put(
     '/:id',
+    authenticate,
+    authorize('ADMIN'),
     validate(updateUserSchema),
     userController.updateUser);
 router.delete(

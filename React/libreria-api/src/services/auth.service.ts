@@ -27,6 +27,7 @@ export async function login(email: string, password: string) {
   const payload = {
     id: user.id,
     email: user.email,
+    role: user.role,
   };
   const token = jwt.sign(
     payload,

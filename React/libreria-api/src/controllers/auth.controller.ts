@@ -3,8 +3,8 @@ import { login } from '../services/auth.service';
 
 export async function loginController(req: Request, res: Response, next: NextFunction) {
 try {
-    const { email, contrasena } = req.body as { email: string; contrasena: string };
-    const result = await login(email, contrasena);
+    const { email, password } = req.body as { email: string; password: string };
+    const result = await login(email, password);
     return res.status(200).json(result);
 } catch {
     // Respuesta generica (no revelo que es lo que falla, si email o contraseña)

@@ -9,20 +9,14 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-enum Seccion {
-  Ciencia_Ficcion
-  Fantasia
-  Psicologia
-  Romance_Juvenil
-}
-
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  nombre     String
-  contrasena String
-  libro      Libro[]
-  createdAt  DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nombre    String
+  password  String
+  createdAt DateTime @default(now())
+  role      Role     @default(USER)
+  libro     Libro[]
 }
 
 model Libro {
@@ -31,12 +25,12 @@ model Libro {
   genero      String
   descripcion String?
   imagen      String?
-  seccion     Seccion
-  user        User     @relation(fields: [userId], references: [id])
   userId      Int
-  autor       Autor    @relation(fields: [autorId], references: [id])
   autorId     Int
   createdAt   DateTime @default(now())
+  seccion     Seccion
+  autor       Autor    @relation(fields: [autorId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Autor {
@@ -44,6 +38,18 @@ model Autor {
   nombre    String
   bio       String?
   foto      String?
-  libro     Libro[]
   createdAt DateTime @default(now())
+  libro     Libro[]
+}
+
+enum Seccion {
+  Ciencia_Ficcion
+  Fantasia
+  Psicologia
+  Romance_Juvenil
+}
+
+enum Role {
+  USER
+  ADMIN
 }

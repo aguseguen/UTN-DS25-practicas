@@ -124,8 +124,9 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   nombre: 'nombre',
-  contrasena: 'contrasena',
-  createdAt: 'createdAt'
+  password: 'password',
+  createdAt: 'createdAt',
+  role: 'role'
 };
 
 exports.Prisma.LibroScalarFieldEnum = {
@@ -134,10 +135,10 @@ exports.Prisma.LibroScalarFieldEnum = {
   genero: 'genero',
   descripcion: 'descripcion',
   imagen: 'imagen',
-  seccion: 'seccion',
   userId: 'userId',
   autorId: 'autorId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  seccion: 'seccion'
 };
 
 exports.Prisma.AutorScalarFieldEnum = {
@@ -162,6 +163,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Role = exports.$Enums.Role = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
 exports.Seccion = exports.$Enums.Seccion = {
   Ciencia_Ficcion: 'Ciencia_Ficcion',
   Fantasia: 'Fantasia',

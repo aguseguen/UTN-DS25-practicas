@@ -1,5 +1,5 @@
 import prisma from '../config/prisma';
-import { Libro, Autor, Seccion } from '../generated/prisma'; // tipos que genera Prisma
+import { Libro, Seccion } from '../generated/prisma'; // tipos que genera Prisma
 
 const mapLibro = (r: any): Libro & { autor: string } => ({
   id: r.id,

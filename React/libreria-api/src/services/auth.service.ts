@@ -12,7 +12,7 @@ export async function login(email: string, password: string) {
   }
 
   // 2. Comparar contraseñas
-  const isPasswordValid = bcrypt.compareSync(password, user.contrasena);
+  const isPasswordValid = bcrypt.compareSync(password, user.password);
 
   if (!isPasswordValid) {
     throw new Error('Credenciales invalidas');

@@ -1,21 +1,34 @@
-export type UserRole = 'USER' | 'ADMIN';
+export type Role = 'USER' | 'ADMIN';
 
 export type UserData = {
     id: number;
-    name?: string | null;
+    nombre: string;
     email: string;
-    role: UserRole;
+    role: Role;
     createdAt: Date;
-    updatedAt: Date;
 }
 
 export type UsersListResponse = {
     users: UserData[];
     total: number;
-    message?: string;
+    message: string;
 }
 
 export type UserResponse = {
     user: UserData;
-    message?: string;
+    message: string;
+}
+
+export interface CreateUserRequest {
+    email: string;
+    password: string;
+    nombre: string;
+    role: Role;
+}
+
+export interface UpdateUserRequest {
+    email?: string;
+    password?:string;
+    nombre?: string;
+    role?: Role;
 }

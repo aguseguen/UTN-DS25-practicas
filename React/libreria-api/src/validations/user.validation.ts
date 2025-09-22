@@ -9,7 +9,7 @@ export const createUserSchema = z.object({
         .min(6, 'La contraseña debe tener al menos 6 caracteres')
         .regex(/[A-Z]/, 'La contraseña debe contener al menos una letra mayúscula')
         .regex(/[0-9]/, 'La contraseña debe contener al menos un número'),
-    name: z.string()
+    nombre: z.string()
         .min(2, 'El nombre debe tener al menos 2 caracteres')
         .max(50, 'El nombre no puede tener más de 50 caracteres')
         .trim(),

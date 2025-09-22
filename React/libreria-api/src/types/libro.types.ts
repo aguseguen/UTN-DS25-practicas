@@ -16,19 +16,21 @@ export interface Autor {
   foto: string;
 }
 
-export interface User {
-  id: number;
-  nombre: string;
-  email: string;
-  contrasena: string;
-  foto: string;
-}
 
-export interface ObtenerLibroRequest {
+// Libro Interfaces
+export interface GetLibroRequest {
   id: number;
 }   
+export interface GetLibroResponse {
+  libro: Libro;
+  message: string;
+}
 
-export interface CrearLibroRequest {
+export interface GetAllLibrosResponse {
+  libros: Libro[];
+  total: number;
+}
+export interface CreateLibroRequest {
   titulo: string;
   genero: string;
   autor: string;
@@ -36,12 +38,12 @@ export interface CrearLibroRequest {
   imagen: string;
 }
 
-export interface CrearLibroResponse {
+export interface CreateLibroResponse {
   libro: Libro;
   message: string;
 }
 
-export interface ActualizarLibroRequest {
+export interface UpdateLibroRequest {
   titulo?: string;
   genero?: string;
   autor?: string;
@@ -49,119 +51,78 @@ export interface ActualizarLibroRequest {
   imagen?: string;
 }
 
-export interface ActualizarLibroResponse {
+export interface UpdateLibroResponse {
   libro: Libro;
   message: string;
 }
 
-export interface EliminarLibroRequest {
+export interface DeleteLibroRequest {
   id: number;
 }
 
-export interface EliminarLibroResponse {
+export interface DeleteLibroResponse {
   message: string;
 }
 
-export interface ObtenerLibroResponse {
-  libro: Libro;
-  message: string;
-}
-
-export interface ObtenerLibrosResponse {
+export interface GetLibrosDestacadosResponse {
   libros: Libro[];
-  total: number;
 }
 
-export interface CrearAutorRequest {
+export interface GetLibrosPorGeneroResponse {
+  libros: Libro[];
+}
+
+export interface GetLibrosPorGeneroRequest {
+  genero: string;
+}
+
+
+
+// Autor Interfaces
+export interface CreateAutorRequest {
   nombre: string;
   bio: string;
   foto: string;
 }
 
-export interface CrearAutorResponse {
+export interface CreateAutorResponse {
   autor: Autor;
   message: string;
 } 
 
-export interface ObtenerAutorRequest {
+export interface GetAutorRequest {
   id: number;
 }
 
-export interface ObtenerAutorResponse {
+export interface GetAutorResponse {
   autor: Autor;
   message: string;
 }
 
-export interface ObtenerAutoresResponse {
+export interface GetAllAutoresResponse {
   autores: Autor[];
   total: number;
 } 
 
-export interface ActualizarAutorRequest {
+export interface UpdateAutorRequest {
   id: number;
   nombre?: string;
   bio?: string;
   foto?: string;
 }
 
-export interface ActualizarAutorResponse {
+export interface UpdateAutorResponse {
   autor: Autor;
   message: string;
 }
 
-export interface EliminarAutorRequest {
+export interface DeleteAutorRequest {
   id: number;
 }
 
-export interface EliminarAutorResponse {
+export interface DeleteAutorResponse {
   message: string;
 } 
 
-export interface CrearUsuarioRequest {
-  nombre: string;
-  email: string;
-  contrasena: string;
-  foto: string;
-}
-
-export interface CrearUsuarioResponse {
-  usuario: User;
-  message: string;
-}
-
-export interface ObtenerUsuarioRequest {
-  id: number;
-}
-
-export interface ObtenerUsuarioResponse {
-  usuario: User;
-  message: string;
-}
-
-export interface ObtenerUsuariosResponse {
-  usuarios: User[];
-  total: number;
-}
-
-export interface ActualizarUsuarioRequest {
-  id: number;
-  nombre?: string;
-  email?: string;
-  contrasena?: string;
-  foto?: string;
-}
-
-export interface ActualizarUsuarioResponse {
-  usuario: User;
-  message: string;
-}
-
-export interface EliminarUsuarioRequest {
-  id: number;
-}
-
-export interface EliminarUsuarioResponse {
-  message: string;
-} 
 
 

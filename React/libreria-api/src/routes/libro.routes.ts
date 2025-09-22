@@ -1,18 +1,46 @@
 import { Router } from 'express';
-import { obtenerTodos, obtenerPorId, crear, actualizar, eliminar, obtenerDestacados, obtenerPorGenero } from '../controllers/libro.controller';
-import { validate } from '../../middlewares/validation.middleware';
-import { createLibroSchema, updateLibroSchema } from '../../validations/libro.validation';
+import * as libroController from '../controllers/libro.controller';
+import { validate } from '../middlewares/validation.middleware';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
+import { createLibroSchema, updateLibroSchema } from '../validations/libro.validation';
 
 const router = Router();
 
-router.get('/', obtenerTodos);
-router.get('/destacados', obtenerDestacados);
-router.get('/genero/:genero', obtenerPorGenero);
-router.get('/:id', obtenerPorId);
+router.get(
+    '/',
+    authenticate,
+    authorize('ADMIN', 'USER'),
+    libroController.getAllLibros);
+router.get(
+    '/destacados',
+    authenticate,
+    authorize('ADMIN', 'USER'),
+    libroController.getLibrosDestacados);
+router.get(
+    '/genero/:genero',
+    authenticate,
+    authorize('ADMIN', 'USER'),
+    libroController.getLibrosPorGenero);
+router.get(
+    '/:id',
+    authenticate,
+    authorize('ADMIN', 'USER'),
+    libroController.getLibroById);
+router.post(
+    '/',
+    authenticate,
+    authorize('ADMIN'),
+    validate(createLibroSchema),
+    libroController.createLibro);
+router.put(
+    '/:id',
+    authenticate,
+    authorize('ADMIN'),
+    validate(updateLibroSchema),
+    libroController.updateLibro);
+router.delete('/:id',
+    authenticate,
+    authorize('ADMIN'),
+    libroController.deleteLibro);
 
-router.post('/', validate(createLibroSchema), crear);
-router.put('/:id', validate(updateLibroSchema), actualizar);
-
-router.delete('/:id', eliminar);
-
-export default router;
+export const libroRoutes = router;

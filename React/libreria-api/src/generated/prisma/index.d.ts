@@ -42,11 +42,23 @@ export namespace $Enums {
 
 export type Seccion = (typeof Seccion)[keyof typeof Seccion]
 
+
+export const Role: {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
 }
 
 export type Seccion = $Enums.Seccion
 
 export const Seccion: typeof $Enums.Seccion
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1142,24 +1154,27 @@ export namespace Prisma {
     id: number | null
     email: string | null
     nombre: string | null
-    contrasena: string | null
+    password: string | null
     createdAt: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
     email: string | null
     nombre: string | null
-    contrasena: string | null
+    password: string | null
     createdAt: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     email: number
     nombre: number
-    contrasena: number
+    password: number
     createdAt: number
+    role: number
     _all: number
   }
 
@@ -1176,24 +1191,27 @@ export namespace Prisma {
     id?: true
     email?: true
     nombre?: true
-    contrasena?: true
+    password?: true
     createdAt?: true
+    role?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     email?: true
     nombre?: true
-    contrasena?: true
+    password?: true
     createdAt?: true
+    role?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     email?: true
     nombre?: true
-    contrasena?: true
+    password?: true
     createdAt?: true
+    role?: true
     _all?: true
   }
 
@@ -1287,8 +1305,9 @@ export namespace Prisma {
     id: number
     email: string
     nombre: string
-    contrasena: string
+    password: string
     createdAt: Date
+    role: $Enums.Role
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1314,8 +1333,9 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     nombre?: boolean
-    contrasena?: boolean
+    password?: boolean
     createdAt?: boolean
+    role?: boolean
     libro?: boolean | User$libroArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1324,27 +1344,30 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     nombre?: boolean
-    contrasena?: boolean
+    password?: boolean
     createdAt?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
     nombre?: boolean
-    contrasena?: boolean
+    password?: boolean
     createdAt?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     email?: boolean
     nombre?: boolean
-    contrasena?: boolean
+    password?: boolean
     createdAt?: boolean
+    role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "nombre" | "contrasena" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "nombre" | "password" | "createdAt" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     libro?: boolean | User$libroArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1361,8 +1384,9 @@ export namespace Prisma {
       id: number
       email: string
       nombre: string
-      contrasena: string
+      password: string
       createdAt: Date
+      role: $Enums.Role
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1790,8 +1814,9 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly email: FieldRef<"User", 'String'>
     readonly nombre: FieldRef<"User", 'String'>
-    readonly contrasena: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'Role'>
   }
     
 
@@ -2252,10 +2277,10 @@ export namespace Prisma {
     genero: string | null
     descripcion: string | null
     imagen: string | null
-    seccion: $Enums.Seccion | null
     userId: number | null
     autorId: number | null
     createdAt: Date | null
+    seccion: $Enums.Seccion | null
   }
 
   export type LibroMaxAggregateOutputType = {
@@ -2264,10 +2289,10 @@ export namespace Prisma {
     genero: string | null
     descripcion: string | null
     imagen: string | null
-    seccion: $Enums.Seccion | null
     userId: number | null
     autorId: number | null
     createdAt: Date | null
+    seccion: $Enums.Seccion | null
   }
 
   export type LibroCountAggregateOutputType = {
@@ -2276,10 +2301,10 @@ export namespace Prisma {
     genero: number
     descripcion: number
     imagen: number
-    seccion: number
     userId: number
     autorId: number
     createdAt: number
+    seccion: number
     _all: number
   }
 
@@ -2302,10 +2327,10 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
-    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
+    seccion?: true
   }
 
   export type LibroMaxAggregateInputType = {
@@ -2314,10 +2339,10 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
-    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
+    seccion?: true
   }
 
   export type LibroCountAggregateInputType = {
@@ -2326,10 +2351,10 @@ export namespace Prisma {
     genero?: true
     descripcion?: true
     imagen?: true
-    seccion?: true
     userId?: true
     autorId?: true
     createdAt?: true
+    seccion?: true
     _all?: true
   }
 
@@ -2425,10 +2450,10 @@ export namespace Prisma {
     genero: string
     descripcion: string | null
     imagen: string | null
-    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt: Date
+    seccion: $Enums.Seccion
     _count: LibroCountAggregateOutputType | null
     _avg: LibroAvgAggregateOutputType | null
     _sum: LibroSumAggregateOutputType | null
@@ -2456,12 +2481,12 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
-    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    seccion?: boolean
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
 
   export type LibroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2470,12 +2495,12 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
-    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    seccion?: boolean
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
 
   export type LibroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2484,12 +2509,12 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
-    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    seccion?: boolean
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
 
   export type LibroSelectScalar = {
@@ -2498,31 +2523,31 @@ export namespace Prisma {
     genero?: boolean
     descripcion?: boolean
     imagen?: boolean
-    seccion?: boolean
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
+    seccion?: boolean
   }
 
-  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "seccion" | "userId" | "autorId" | "createdAt", ExtArgs["result"]["libro"]>
+  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "createdAt" | "seccion", ExtArgs["result"]["libro"]>
   export type LibroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LibroIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LibroIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $LibroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Libro"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       autor: Prisma.$AutorPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2530,10 +2555,10 @@ export namespace Prisma {
       genero: string
       descripcion: string | null
       imagen: string | null
-      seccion: $Enums.Seccion
       userId: number
       autorId: number
       createdAt: Date
+      seccion: $Enums.Seccion
     }, ExtArgs["result"]["libro"]>
     composites: {}
   }
@@ -2928,8 +2953,8 @@ export namespace Prisma {
    */
   export interface Prisma__LibroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     autor<T extends AutorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AutorDefaultArgs<ExtArgs>>): Prisma__AutorClient<$Result.GetResult<Prisma.$AutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2964,10 +2989,10 @@ export namespace Prisma {
     readonly genero: FieldRef<"Libro", 'String'>
     readonly descripcion: FieldRef<"Libro", 'String'>
     readonly imagen: FieldRef<"Libro", 'String'>
-    readonly seccion: FieldRef<"Libro", 'Seccion'>
     readonly userId: FieldRef<"Libro", 'Int'>
     readonly autorId: FieldRef<"Libro", 'Int'>
     readonly createdAt: FieldRef<"Libro", 'DateTime'>
+    readonly seccion: FieldRef<"Libro", 'Seccion'>
   }
     
 
@@ -4504,8 +4529,9 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     nombre: 'nombre',
-    contrasena: 'contrasena',
-    createdAt: 'createdAt'
+    password: 'password',
+    createdAt: 'createdAt',
+    role: 'role'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4517,10 +4543,10 @@ export namespace Prisma {
     genero: 'genero',
     descripcion: 'descripcion',
     imagen: 'imagen',
-    seccion: 'seccion',
     userId: 'userId',
     autorId: 'autorId',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    seccion: 'seccion'
   };
 
   export type LibroScalarFieldEnum = (typeof LibroScalarFieldEnum)[keyof typeof LibroScalarFieldEnum]
@@ -4609,6 +4635,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Seccion'
    */
   export type EnumSeccionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seccion'>
@@ -4646,8 +4686,9 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     email?: StringFilter<"User"> | string
     nombre?: StringFilter<"User"> | string
-    contrasena?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     libro?: LibroListRelationFilter
   }
 
@@ -4655,8 +4696,9 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     nombre?: SortOrder
-    contrasena?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
+    role?: SortOrder
     libro?: LibroOrderByRelationAggregateInput
   }
 
@@ -4667,8 +4709,9 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     nombre?: StringFilter<"User"> | string
-    contrasena?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     libro?: LibroListRelationFilter
   }, "id" | "email">
 
@@ -4676,8 +4719,9 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     nombre?: SortOrder
-    contrasena?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
+    role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -4692,8 +4736,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     email?: StringWithAggregatesFilter<"User"> | string
     nombre?: StringWithAggregatesFilter<"User"> | string
-    contrasena?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
   export type LibroWhereInput = {
@@ -4705,12 +4750,12 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     autor?: XOR<AutorScalarRelationFilter, AutorWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type LibroOrderByWithRelationInput = {
@@ -4719,12 +4764,12 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
-    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
+    seccion?: SortOrder
     autor?: AutorOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type LibroWhereUniqueInput = Prisma.AtLeast<{
@@ -4736,12 +4781,12 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     autor?: XOR<AutorScalarRelationFilter, AutorWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type LibroOrderByWithAggregationInput = {
@@ -4750,10 +4795,10 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrderInput | SortOrder
     imagen?: SortOrderInput | SortOrder
-    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
+    seccion?: SortOrder
     _count?: LibroCountOrderByAggregateInput
     _avg?: LibroAvgOrderByAggregateInput
     _max?: LibroMaxOrderByAggregateInput
@@ -4770,10 +4815,10 @@ export namespace Prisma {
     genero?: StringWithAggregatesFilter<"Libro"> | string
     descripcion?: StringNullableWithAggregatesFilter<"Libro"> | string | null
     imagen?: StringNullableWithAggregatesFilter<"Libro"> | string | null
-    seccion?: EnumSeccionWithAggregatesFilter<"Libro"> | $Enums.Seccion
     userId?: IntWithAggregatesFilter<"Libro"> | number
     autorId?: IntWithAggregatesFilter<"Libro"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Libro"> | Date | string
+    seccion?: EnumSeccionWithAggregatesFilter<"Libro"> | $Enums.Seccion
   }
 
   export type AutorWhereInput = {
@@ -4836,8 +4881,9 @@ export namespace Prisma {
   export type UserCreateInput = {
     email: string
     nombre: string
-    contrasena: string
+    password: string
     createdAt?: Date | string
+    role?: $Enums.Role
     libro?: LibroCreateNestedManyWithoutUserInput
   }
 
@@ -4845,16 +4891,18 @@ export namespace Prisma {
     id?: number
     email: string
     nombre: string
-    contrasena: string
+    password: string
     createdAt?: Date | string
+    role?: $Enums.Role
     libro?: LibroUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     libro?: LibroUpdateManyWithoutUserNestedInput
   }
 
@@ -4862,8 +4910,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     libro?: LibroUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -4871,23 +4920,26 @@ export namespace Prisma {
     id?: number
     email: string
     nombre: string
-    contrasena: string
+    password: string
     createdAt?: Date | string
+    role?: $Enums.Role
   }
 
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type LibroCreateInput = {
@@ -4895,10 +4947,10 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutLibroInput
+    seccion: $Enums.Seccion
     autor: AutorCreateNestedOneWithoutLibroInput
+    user: UserCreateNestedOneWithoutLibroInput
   }
 
   export type LibroUncheckedCreateInput = {
@@ -4907,10 +4959,10 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroUpdateInput = {
@@ -4918,10 +4970,10 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLibroNestedInput
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
+    user?: UserUpdateOneRequiredWithoutLibroNestedInput
   }
 
   export type LibroUncheckedUpdateInput = {
@@ -4930,10 +4982,10 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroCreateManyInput = {
@@ -4942,10 +4994,10 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     userId: number
     autorId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroUpdateManyMutationInput = {
@@ -4953,8 +5005,8 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroUncheckedUpdateManyInput = {
@@ -4963,10 +5015,10 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type AutorCreateInput = {
@@ -5063,6 +5115,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type LibroListRelationFilter = {
     every?: LibroWhereInput
     some?: LibroWhereInput
@@ -5077,8 +5136,9 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     nombre?: SortOrder
-    contrasena?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
+    role?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -5089,16 +5149,18 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     nombre?: SortOrder
-    contrasena?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
+    role?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     nombre?: SortOrder
-    contrasena?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
+    role?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -5153,6 +5215,16 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5175,14 +5247,14 @@ export namespace Prisma {
     not?: NestedEnumSeccionFilter<$PrismaModel> | $Enums.Seccion
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type AutorScalarRelationFilter = {
     is?: AutorWhereInput
     isNot?: AutorWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SortOrderInput = {
@@ -5196,10 +5268,10 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
-    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
+    seccion?: SortOrder
   }
 
   export type LibroAvgOrderByAggregateInput = {
@@ -5214,10 +5286,10 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
-    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
+    seccion?: SortOrder
   }
 
   export type LibroMinOrderByAggregateInput = {
@@ -5226,10 +5298,10 @@ export namespace Prisma {
     genero?: SortOrder
     descripcion?: SortOrder
     imagen?: SortOrder
-    seccion?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
+    seccion?: SortOrder
   }
 
   export type LibroSumOrderByAggregateInput = {
@@ -5320,6 +5392,10 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type LibroUpdateManyWithoutUserNestedInput = {
     create?: XOR<LibroCreateWithoutUserInput, LibroUncheckedCreateWithoutUserInput> | LibroCreateWithoutUserInput[] | LibroUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LibroCreateOrConnectWithoutUserInput | LibroCreateOrConnectWithoutUserInput[]
@@ -5356,16 +5432,16 @@ export namespace Prisma {
     deleteMany?: LibroScalarWhereInput | LibroScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutLibroInput = {
-    create?: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLibroInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type AutorCreateNestedOneWithoutLibroInput = {
     create?: XOR<AutorCreateWithoutLibroInput, AutorUncheckedCreateWithoutLibroInput>
     connectOrCreate?: AutorCreateOrConnectWithoutLibroInput
     connect?: AutorWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutLibroInput = {
+    create?: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLibroInput
+    connect?: UserWhereUniqueInput
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -5376,20 +5452,20 @@ export namespace Prisma {
     set?: $Enums.Seccion
   }
 
-  export type UserUpdateOneRequiredWithoutLibroNestedInput = {
-    create?: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLibroInput
-    upsert?: UserUpsertWithoutLibroInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLibroInput, UserUpdateWithoutLibroInput>, UserUncheckedUpdateWithoutLibroInput>
-  }
-
   export type AutorUpdateOneRequiredWithoutLibroNestedInput = {
     create?: XOR<AutorCreateWithoutLibroInput, AutorUncheckedCreateWithoutLibroInput>
     connectOrCreate?: AutorCreateOrConnectWithoutLibroInput
     upsert?: AutorUpsertWithoutLibroInput
     connect?: AutorWhereUniqueInput
     update?: XOR<XOR<AutorUpdateToOneWithWhereWithoutLibroInput, AutorUpdateWithoutLibroInput>, AutorUncheckedUpdateWithoutLibroInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutLibroNestedInput = {
+    create?: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLibroInput
+    upsert?: UserUpsertWithoutLibroInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLibroInput, UserUpdateWithoutLibroInput>, UserUncheckedUpdateWithoutLibroInput>
   }
 
   export type LibroCreateNestedManyWithoutAutorInput = {
@@ -5470,6 +5546,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5526,6 +5609,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -5592,8 +5685,8 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     createdAt?: Date | string
+    seccion: $Enums.Seccion
     autor: AutorCreateNestedOneWithoutLibroInput
   }
 
@@ -5603,9 +5696,9 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     autorId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroCreateOrConnectWithoutUserInput = {
@@ -5643,30 +5736,10 @@ export namespace Prisma {
     genero?: StringFilter<"Libro"> | string
     descripcion?: StringNullableFilter<"Libro"> | string | null
     imagen?: StringNullableFilter<"Libro"> | string | null
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-  }
-
-  export type UserCreateWithoutLibroInput = {
-    email: string
-    nombre: string
-    contrasena: string
-    createdAt?: Date | string
-  }
-
-  export type UserUncheckedCreateWithoutLibroInput = {
-    id?: number
-    email: string
-    nombre: string
-    contrasena: string
-    createdAt?: Date | string
-  }
-
-  export type UserCreateOrConnectWithoutLibroInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
+    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
   }
 
   export type AutorCreateWithoutLibroInput = {
@@ -5689,30 +5762,26 @@ export namespace Prisma {
     create: XOR<AutorCreateWithoutLibroInput, AutorUncheckedCreateWithoutLibroInput>
   }
 
-  export type UserUpsertWithoutLibroInput = {
-    update: XOR<UserUpdateWithoutLibroInput, UserUncheckedUpdateWithoutLibroInput>
+  export type UserCreateWithoutLibroInput = {
+    email: string
+    nombre: string
+    password: string
+    createdAt?: Date | string
+    role?: $Enums.Role
+  }
+
+  export type UserUncheckedCreateWithoutLibroInput = {
+    id?: number
+    email: string
+    nombre: string
+    password: string
+    createdAt?: Date | string
+    role?: $Enums.Role
+  }
+
+  export type UserCreateOrConnectWithoutLibroInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLibroInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLibroInput, UserUncheckedUpdateWithoutLibroInput>
-  }
-
-  export type UserUpdateWithoutLibroInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserUncheckedUpdateWithoutLibroInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
-    contrasena?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AutorUpsertWithoutLibroInput = {
@@ -5741,13 +5810,41 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserUpsertWithoutLibroInput = {
+    update: XOR<UserUpdateWithoutLibroInput, UserUncheckedUpdateWithoutLibroInput>
+    create: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLibroInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLibroInput, UserUncheckedUpdateWithoutLibroInput>
+  }
+
+  export type UserUpdateWithoutLibroInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type UserUncheckedUpdateWithoutLibroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
   export type LibroCreateWithoutAutorInput = {
     titulo: string
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     createdAt?: Date | string
+    seccion: $Enums.Seccion
     user: UserCreateNestedOneWithoutLibroInput
   }
 
@@ -5757,9 +5854,9 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     userId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroCreateOrConnectWithoutAutorInput = {
@@ -5794,9 +5891,9 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     autorId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroUpdateWithoutUserInput = {
@@ -5804,8 +5901,8 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
   }
 
@@ -5815,9 +5912,9 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroUncheckedUpdateManyWithoutUserInput = {
@@ -5826,9 +5923,9 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroCreateManyAutorInput = {
@@ -5837,9 +5934,9 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
-    seccion: $Enums.Seccion
     userId: number
     createdAt?: Date | string
+    seccion: $Enums.Seccion
   }
 
   export type LibroUpdateWithoutAutorInput = {
@@ -5847,8 +5944,8 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
   }
 
@@ -5858,9 +5955,9 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroUncheckedUpdateManyWithoutAutorInput = {
@@ -5869,9 +5966,9 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
 

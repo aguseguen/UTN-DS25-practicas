@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import * as libroService from '../services/libro.service';
-import { success } from 'zod';
 
 // GET /api/libros
 export async function getAllLibros(_req: Request, res: Response, next: NextFunction) {
@@ -70,7 +69,7 @@ export async function getLibrosDestacados(_req: Request, res: Response, next: Ne
 export async function getLibrosPorGenero(req: Request, res: Response, next: NextFunction) {
   try {
     const { genero } = req.params;
-    const libros = await libroService.getLibrosPorGenero(genero);
+    const libros = await libroService.getLibrosPorGenero({ genero });
     res.json(libros);
   } catch (e) {
     next(e);

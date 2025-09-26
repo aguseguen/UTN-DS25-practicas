@@ -101,3 +101,35 @@ export async function deleteLibro(id: number): Promise<void> {
   // 2. Eliminar libro
   await prisma.libro.delete({ where: { id }});
 } 
+
+// obtener libros destacados (un libro por genero)
+export async function getLibrosDestacados(): Promise<LibroData[]> {
+  const generos = await prisma.libro.findMany({
+    distinct: ['genero'],
+    select: { genero: true },
+  });
+
+  const librosDestacados: LibroData[] = [];
+
+  for (const genero of generos) {
+    const libro = await prisma.libro.findFirst({
+      where: { genero: genero.genero },
+      include: { autor: true, seccion: true },
+    });
+    if (libro) {
+      librosDestacados.push(toLibro(libro));
+    }
+  }
+
+  return librosDestacados;
+}
+
+// obtener libros por genero
+export async function getLibrosPorGenero(req: GetLibrosPorGeneroRequest): Promise<LibroData[]> {
+  const libros = await prisma.libro.findMany({
+    where: { genero: req.genero },
+    include: { autor: true, seccion: true },
+  });
+  return libros.map(toLibro);
+}
+

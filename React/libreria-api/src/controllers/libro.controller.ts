@@ -49,7 +49,7 @@ export async function deleteLibro(req: Request, res: Response, next: NextFunctio
   try {
     const id = Number(req.params.id);
     await libroService.deleteLibro(id);
-    res.status(204).send();
+    res.status(204).send({ success: true, message: 'Libro eliminado con éxito' });
   } catch (e) {
     next(e);
   }

@@ -48,7 +48,7 @@ export async function deleteAutor(req: Request, res: Response, next: NextFunctio
   try {
     const id = Number(req.params.id);
     await autorService.deleteAutor({ id });
-    res.status(204).send();
+    res.status(204).send({ success: true, message: 'Autor eliminado con éxito' });
   } catch (e) {
     next(e);
   }

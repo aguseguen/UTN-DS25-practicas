@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { libroRoutes } from './routes/libro.routes';
 import { userRoutes } from './routes/user.routes';
+import { autorRoutes } from './routes/autor.routes';
+import { seccionRoutes } from './routes/seccion.routes';
 import { authRoutes } from './routes/auth.routes';
 import { logRequest } from './middlewares/logger.middleware';
 
@@ -28,6 +30,8 @@ app.use(logRequest);
 //Rutas
 app.use('/api/libros', libroRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/autores', autorRoutes);
+app.use('/api/secciones', seccionRoutes);
 app.use('/api/auth', authRoutes);
 
 

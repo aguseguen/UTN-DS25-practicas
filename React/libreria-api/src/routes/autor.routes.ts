@@ -33,3 +33,5 @@ router.delete('/:id',
     authenticate,
     authorize('ADMIN'),
     autorController.deleteAutor); // Eliminar un autor por ID
+
+export const autorRoutes = router;

@@ -28,7 +28,8 @@ model Libro {
   userId      Int
   autorId     Int
   createdAt   DateTime @default(now())
-  seccion     Seccion
+  seccion     Seccion? @relation(fields: [seccionId], references: [id])
+  seccionId   Int?
   autor       Autor    @relation(fields: [autorId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
 }
@@ -42,11 +43,11 @@ model Autor {
   libro     Libro[]
 }
 
-enum Seccion {
-  Ciencia_Ficcion
-  Fantasia
-  Psicologia
-  Romance_Juvenil
+model Seccion {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique
+  createdAt DateTime @default(now())
+  libro     Libro[]
 }
 
 enum Role {

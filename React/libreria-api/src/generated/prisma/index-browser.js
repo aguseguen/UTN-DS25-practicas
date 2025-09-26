@@ -138,7 +138,7 @@ exports.Prisma.LibroScalarFieldEnum = {
   userId: 'userId',
   autorId: 'autorId',
   createdAt: 'createdAt',
-  seccion: 'seccion'
+  seccionId: 'seccionId'
 };
 
 exports.Prisma.AutorScalarFieldEnum = {
@@ -146,6 +146,12 @@ exports.Prisma.AutorScalarFieldEnum = {
   nombre: 'nombre',
   bio: 'bio',
   foto: 'foto',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SeccionScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
   createdAt: 'createdAt'
 };
 
@@ -168,17 +174,11 @@ exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN'
 };
 
-exports.Seccion = exports.$Enums.Seccion = {
-  Ciencia_Ficcion: 'Ciencia_Ficcion',
-  Fantasia: 'Fantasia',
-  Psicologia: 'Psicologia',
-  Romance_Juvenil: 'Romance_Juvenil'
-};
-
 exports.Prisma.ModelName = {
   User: 'User',
   Libro: 'Libro',
-  Autor: 'Autor'
+  Autor: 'Autor',
+  Seccion: 'Seccion'
 };
 
 /**

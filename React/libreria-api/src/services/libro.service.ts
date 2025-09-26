@@ -1,132 +1,103 @@
 import prisma from '../config/prisma';
-import { Libro, Seccion } from '../generated/prisma'; // tipos que genera Prisma
+import type { Libro as PrismaLibro, Autor, Seccion } from "../generated/prisma";
+import type { LibroData, CreateLibroRequest, UpdateLibroRequest, GetLibrosPorGeneroRequest } from '../types/libro.types';
 
-const mapLibro = (r: any): Libro & { autor: string } => ({
-  id: r.id,
-  titulo: r.titulo,
-  genero: r.genero,
-  seccion: r.seccion,
-  autor: r.autor?.nombre ?? '(sin autor)',
-  descripcion: r.descripcion ?? '',
-  imagen: r.imagen ?? '',
-  userId: r.userId,
-  autorId: r.autorId,
-  createdAt: r.createdAt,
+const toLibro = (l: PrismaLibro & { autor: Autor, seccion: Seccion | null }): LibroData => ({
+    id: l.id,
+    titulo: l.titulo, 
+    genero: l.genero,
+    descripcion: l.descripcion ?? '',
+    imagen: l.imagen ?? '',
+    autor: l.autor.nombre,
+    seccion: l.seccion?.nombre ?? 'Sin seccion',
+    createdAt: l.createdAt,
 });
 
-export async function getAllLibros(): Promise<(Libro & { autor: string })[]> {
-  const rows = await prisma.libro.findMany({
-    include: { autor: true },
-    orderBy: { id: 'asc' },
+// obtener todos los libros
+export async function getAllLibros(limit: number = 10): Promise<LibroData[]> {
+  const libros = await prisma.libro.findMany({
+  orderBy: { id: 'asc' },
+  take: limit,
+  include: { autor: true , seccion: true },
   });
-  return rows.map(mapLibro);
+  return libros.map(toLibro);
 }
 
-export async function getLibroById(id: number): Promise<Libro & { autor: string }> {
-  const row = await prisma.libro.findUnique({
+// obtener libro por id 
+export async function getLibroById(id: number): Promise<LibroData> {
+  const libro = await prisma.libro.findUniqueOrThrow({
     where: { id },
-    include: { autor: true },
+    include: { autor: true, seccion: true },
   });
-  if (!row) {
+
+  return toLibro(libro);
+}
+
+// crear libro
+export async function createLibro(req: CreateLibroRequest): Promise<LibroData> {
+  // 1. Verificar si existe el autor
+  const autor = await prisma.autor.findUnique({ where: { id: req.autorId }});
+  if (!autor) {
+    const error = new Error('Autor no encontrado') as any;
+    error.statusCode = 404;
+    throw error;
+  }
+  // 2. Crear libro
+  const nuevoLibro = await prisma.libro.create({
+    data: {
+      titulo: (req.titulo).trim(),
+      genero: (req.genero).trim(),
+      descripcion: req.descripcion?.trim() ?? '',
+      imagen: req.imagen?.trim() ?? '',
+      autor: { connect: { id: req.autorId } },
+      seccion: req.seccionId ? { connect: { id: req.seccionId } } : undefined,
+      user: { connect: { id: req.userId } },
+    },
+    include: {
+      autor: true,
+      seccion: true,
+    },
+  });
+  return toLibro(nuevoLibro);
+}
+
+// Actualizar libro
+export async function updateLibro(id: number, req: UpdateLibroRequest): Promise<LibroData> {
+  // 1. Verificar si existe el libro
+  const libro = await prisma.libro.findUnique({ where: { id }});
+  if (!libro) {
     const error = new Error('Libro no encontrado') as any;
     error.statusCode = 404;
     throw error;
   }
-  return mapLibro(row);
+  // 2. Actualizar libro      
+  const updatedLibro = await prisma.libro.update({
+    where: { id },
+    data: {
+      titulo: req.titulo?.trim() ?? libro.titulo,
+      genero: req.genero?.trim() ?? libro.genero,
+      descripcion: req.descripcion?.trim() ?? libro.descripcion,
+      imagen: req.imagen?.trim() ?? libro.imagen,
+      autor: req.autorId ? { connect: { id: req.autorId } } : undefined,
+      seccion: req.seccionId ? { connect: { id: req.seccionId } } : undefined,    
+    },
+    include: {
+      autor: true,
+      seccion: true,
+    },
+  });
+  return toLibro(updatedLibro);
 }
 
-export async function createLibro(data: {
-  titulo: string;
-  genero: string;
-  seccion: string;
-  descripcion?: string;
-  imagen?: string;
-  autorId: number;
-  userId: number;
-}): Promise<Libro & { autor: string }> {
-  // Verificar que el autor existe
-  const autorExists = await prisma.autor.findUnique({ where: { id: data.autorId } });
-  if (!autorExists) {
-    const error = new Error('El autor no existe') as any;
+// Eliminar libro
+export async function deleteLibro(id: number): Promise<void> {  
+  // 1. Verificar si existe el libro
+  const libro = await prisma.libro.findUnique({ where: { id }});
+  if (!libro) {
+    const error = new Error('Libro no encontrado') as any;
     error.statusCode = 404;
     throw error;
   }
-  // Validar Seccion
-    if (!Object.values(Seccion).includes(data.seccion as Seccion)) {
-    const error = new Error('Sección inválida') as any;
-    error.statusCode = 400;
-    throw error;
-  }
-  const seccionEnum = data.seccion as Seccion;
-
-  const row = await prisma.libro.create({
-    data: {
-      ...data,
-      seccion: seccionEnum,
-    },
-    include: { autor: true },
-  });
-  return mapLibro(row);
-}
-
-export async function updateLibro(
-  id: number,
-  data: Partial<Libro> & { autorId?: number }
-): Promise<Libro & { autor: string }> {
-  if (data.autorId) {
-    const autorExists = await prisma.autor.findUnique({ where: { id: data.autorId } });
-    if (!autorExists) {
-      const error = new Error('El autor no existe') as any;
-      error.statusCode = 404;
-      throw error;
-    }
-  }
-
-  try {
-    const row = await prisma.libro.update({
-      where: { id },
-      data,
-      include: { autor: true },
-    });
-    return mapLibro(row);
-  } catch (e: any) {
-    if (e.code === 'P2025') {
-      const error = new Error('Libro no encontrado') as any;
-      error.statusCode = 404;
-      throw error;
-    }
-    throw e;
-  }
-}
-
-export async function deleteLibro(id: number): Promise<void> {
-  try {
-    await prisma.libro.delete({ where: { id } });
-  } catch (e: any) {
-    if (e.code === 'P2025') {
-      const error = new Error('Libro no encontrado') as any;
-      error.statusCode = 404;
-      throw error;
-    }
-    throw e;
-  }
-}
-
-export async function getLibrosPorGenero(generoParam: string) {
-  const genero = generoParam.replace(/-/g, ' ');
-  const rows = await prisma.libro.findMany({
-    where: { genero: { equals: genero, mode: 'insensitive' } },
-    include: { autor: true },
-    orderBy: { id: 'asc' },
-  });
-  return rows.map(mapLibro);
-}
-
-export async function getLibrosDestacados() {
-  const rows = await prisma.libro.findMany({
-    include: { autor: true },
-    orderBy: { createdAt: 'desc' },
-    take: 4,
-  });
-  return rows.map(mapLibro);
-}
+  // 2. Eliminar libro
+  await prisma.libro.delete({ where: { id }});
+} 

@@ -28,22 +28,17 @@ export type Libro = $Result.DefaultSelection<Prisma.$LibroPayload>
  * 
  */
 export type Autor = $Result.DefaultSelection<Prisma.$AutorPayload>
+/**
+ * Model Seccion
+ * 
+ */
+export type Seccion = $Result.DefaultSelection<Prisma.$SeccionPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
-  export const Seccion: {
-  Ciencia_Ficcion: 'Ciencia_Ficcion',
-  Fantasia: 'Fantasia',
-  Psicologia: 'Psicologia',
-  Romance_Juvenil: 'Romance_Juvenil'
-};
-
-export type Seccion = (typeof Seccion)[keyof typeof Seccion]
-
-
-export const Role: {
+  export const Role: {
   USER: 'USER',
   ADMIN: 'ADMIN'
 };
@@ -51,10 +46,6 @@ export const Role: {
 export type Role = (typeof Role)[keyof typeof Role]
 
 }
-
-export type Seccion = $Enums.Seccion
-
-export const Seccion: typeof $Enums.Seccion
 
 export type Role = $Enums.Role
 
@@ -207,6 +198,16 @@ export class PrismaClient<
     * ```
     */
   get autor(): Prisma.AutorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.seccion`: Exposes CRUD operations for the **Seccion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Seccions
+    * const seccions = await prisma.seccion.findMany()
+    * ```
+    */
+  get seccion(): Prisma.SeccionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -649,7 +650,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Libro: 'Libro',
-    Autor: 'Autor'
+    Autor: 'Autor',
+    Seccion: 'Seccion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -668,7 +670,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "libro" | "autor"
+      modelProps: "user" | "libro" | "autor" | "seccion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -894,6 +896,80 @@ export namespace Prisma {
           }
         }
       }
+      Seccion: {
+        payload: Prisma.$SeccionPayload<ExtArgs>
+        fields: Prisma.SeccionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SeccionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SeccionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          findFirst: {
+            args: Prisma.SeccionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SeccionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          findMany: {
+            args: Prisma.SeccionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>[]
+          }
+          create: {
+            args: Prisma.SeccionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          createMany: {
+            args: Prisma.SeccionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SeccionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>[]
+          }
+          delete: {
+            args: Prisma.SeccionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          update: {
+            args: Prisma.SeccionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SeccionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SeccionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SeccionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SeccionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeccionPayload>
+          }
+          aggregate: {
+            args: Prisma.SeccionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSeccion>
+          }
+          groupBy: {
+            args: Prisma.SeccionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SeccionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SeccionCountArgs<ExtArgs>
+            result: $Utils.Optional<SeccionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -989,6 +1065,7 @@ export namespace Prisma {
     user?: UserOmit
     libro?: LibroOmit
     autor?: AutorOmit
+    seccion?: SeccionOmit
   }
 
   /* Types for Logging */
@@ -1122,6 +1199,37 @@ export namespace Prisma {
    * AutorCountOutputType without action
    */
   export type AutorCountOutputTypeCountLibroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LibroWhereInput
+  }
+
+
+  /**
+   * Count Type SeccionCountOutputType
+   */
+
+  export type SeccionCountOutputType = {
+    libro: number
+  }
+
+  export type SeccionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    libro?: boolean | SeccionCountOutputTypeCountLibroArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SeccionCountOutputType without action
+   */
+  export type SeccionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SeccionCountOutputType
+     */
+    select?: SeccionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SeccionCountOutputType without action
+   */
+  export type SeccionCountOutputTypeCountLibroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LibroWhereInput
   }
 
@@ -2263,12 +2371,14 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     autorId: number | null
+    seccionId: number | null
   }
 
   export type LibroSumAggregateOutputType = {
     id: number | null
     userId: number | null
     autorId: number | null
+    seccionId: number | null
   }
 
   export type LibroMinAggregateOutputType = {
@@ -2280,7 +2390,7 @@ export namespace Prisma {
     userId: number | null
     autorId: number | null
     createdAt: Date | null
-    seccion: $Enums.Seccion | null
+    seccionId: number | null
   }
 
   export type LibroMaxAggregateOutputType = {
@@ -2292,7 +2402,7 @@ export namespace Prisma {
     userId: number | null
     autorId: number | null
     createdAt: Date | null
-    seccion: $Enums.Seccion | null
+    seccionId: number | null
   }
 
   export type LibroCountAggregateOutputType = {
@@ -2304,7 +2414,7 @@ export namespace Prisma {
     userId: number
     autorId: number
     createdAt: number
-    seccion: number
+    seccionId: number
     _all: number
   }
 
@@ -2313,12 +2423,14 @@ export namespace Prisma {
     id?: true
     userId?: true
     autorId?: true
+    seccionId?: true
   }
 
   export type LibroSumAggregateInputType = {
     id?: true
     userId?: true
     autorId?: true
+    seccionId?: true
   }
 
   export type LibroMinAggregateInputType = {
@@ -2330,7 +2442,7 @@ export namespace Prisma {
     userId?: true
     autorId?: true
     createdAt?: true
-    seccion?: true
+    seccionId?: true
   }
 
   export type LibroMaxAggregateInputType = {
@@ -2342,7 +2454,7 @@ export namespace Prisma {
     userId?: true
     autorId?: true
     createdAt?: true
-    seccion?: true
+    seccionId?: true
   }
 
   export type LibroCountAggregateInputType = {
@@ -2354,7 +2466,7 @@ export namespace Prisma {
     userId?: true
     autorId?: true
     createdAt?: true
-    seccion?: true
+    seccionId?: true
     _all?: true
   }
 
@@ -2453,7 +2565,7 @@ export namespace Prisma {
     userId: number
     autorId: number
     createdAt: Date
-    seccion: $Enums.Seccion
+    seccionId: number | null
     _count: LibroCountAggregateOutputType | null
     _avg: LibroAvgAggregateOutputType | null
     _sum: LibroSumAggregateOutputType | null
@@ -2484,7 +2596,8 @@ export namespace Prisma {
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    seccion?: boolean
+    seccionId?: boolean
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
@@ -2498,7 +2611,8 @@ export namespace Prisma {
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    seccion?: boolean
+    seccionId?: boolean
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
@@ -2512,7 +2626,8 @@ export namespace Prisma {
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    seccion?: boolean
+    seccionId?: boolean
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["libro"]>
@@ -2526,19 +2641,22 @@ export namespace Prisma {
     userId?: boolean
     autorId?: boolean
     createdAt?: boolean
-    seccion?: boolean
+    seccionId?: boolean
   }
 
-  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "createdAt" | "seccion", ExtArgs["result"]["libro"]>
+  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "createdAt" | "seccionId", ExtArgs["result"]["libro"]>
   export type LibroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LibroIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LibroIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2546,6 +2664,7 @@ export namespace Prisma {
   export type $LibroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Libro"
     objects: {
+      seccion: Prisma.$SeccionPayload<ExtArgs> | null
       autor: Prisma.$AutorPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
     }
@@ -2558,7 +2677,7 @@ export namespace Prisma {
       userId: number
       autorId: number
       createdAt: Date
-      seccion: $Enums.Seccion
+      seccionId: number | null
     }, ExtArgs["result"]["libro"]>
     composites: {}
   }
@@ -2953,6 +3072,7 @@ export namespace Prisma {
    */
   export interface Prisma__LibroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    seccion<T extends Libro$seccionArgs<ExtArgs> = {}>(args?: Subset<T, Libro$seccionArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     autor<T extends AutorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AutorDefaultArgs<ExtArgs>>): Prisma__AutorClient<$Result.GetResult<Prisma.$AutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -2992,7 +3112,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"Libro", 'Int'>
     readonly autorId: FieldRef<"Libro", 'Int'>
     readonly createdAt: FieldRef<"Libro", 'DateTime'>
-    readonly seccion: FieldRef<"Libro", 'Seccion'>
+    readonly seccionId: FieldRef<"Libro", 'Int'>
   }
     
 
@@ -3386,6 +3506,25 @@ export namespace Prisma {
      * Limit how many Libros to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Libro.seccion
+   */
+  export type Libro$seccionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    where?: SeccionWhereInput
   }
 
   /**
@@ -4512,6 +4651,1084 @@ export namespace Prisma {
 
 
   /**
+   * Model Seccion
+   */
+
+  export type AggregateSeccion = {
+    _count: SeccionCountAggregateOutputType | null
+    _avg: SeccionAvgAggregateOutputType | null
+    _sum: SeccionSumAggregateOutputType | null
+    _min: SeccionMinAggregateOutputType | null
+    _max: SeccionMaxAggregateOutputType | null
+  }
+
+  export type SeccionAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SeccionSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SeccionMinAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    createdAt: Date | null
+  }
+
+  export type SeccionMaxAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    createdAt: Date | null
+  }
+
+  export type SeccionCountAggregateOutputType = {
+    id: number
+    nombre: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SeccionAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SeccionSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SeccionMinAggregateInputType = {
+    id?: true
+    nombre?: true
+    createdAt?: true
+  }
+
+  export type SeccionMaxAggregateInputType = {
+    id?: true
+    nombre?: true
+    createdAt?: true
+  }
+
+  export type SeccionCountAggregateInputType = {
+    id?: true
+    nombre?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SeccionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Seccion to aggregate.
+     */
+    where?: SeccionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seccions to fetch.
+     */
+    orderBy?: SeccionOrderByWithRelationInput | SeccionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SeccionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seccions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seccions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Seccions
+    **/
+    _count?: true | SeccionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SeccionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SeccionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SeccionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SeccionMaxAggregateInputType
+  }
+
+  export type GetSeccionAggregateType<T extends SeccionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSeccion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSeccion[P]>
+      : GetScalarType<T[P], AggregateSeccion[P]>
+  }
+
+
+
+
+  export type SeccionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SeccionWhereInput
+    orderBy?: SeccionOrderByWithAggregationInput | SeccionOrderByWithAggregationInput[]
+    by: SeccionScalarFieldEnum[] | SeccionScalarFieldEnum
+    having?: SeccionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SeccionCountAggregateInputType | true
+    _avg?: SeccionAvgAggregateInputType
+    _sum?: SeccionSumAggregateInputType
+    _min?: SeccionMinAggregateInputType
+    _max?: SeccionMaxAggregateInputType
+  }
+
+  export type SeccionGroupByOutputType = {
+    id: number
+    nombre: string
+    createdAt: Date
+    _count: SeccionCountAggregateOutputType | null
+    _avg: SeccionAvgAggregateOutputType | null
+    _sum: SeccionSumAggregateOutputType | null
+    _min: SeccionMinAggregateOutputType | null
+    _max: SeccionMaxAggregateOutputType | null
+  }
+
+  type GetSeccionGroupByPayload<T extends SeccionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SeccionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SeccionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SeccionGroupByOutputType[P]>
+            : GetScalarType<T[P], SeccionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SeccionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    createdAt?: boolean
+    libro?: boolean | Seccion$libroArgs<ExtArgs>
+    _count?: boolean | SeccionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["seccion"]>
+
+  export type SeccionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["seccion"]>
+
+  export type SeccionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["seccion"]>
+
+  export type SeccionSelectScalar = {
+    id?: boolean
+    nombre?: boolean
+    createdAt?: boolean
+  }
+
+  export type SeccionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "createdAt", ExtArgs["result"]["seccion"]>
+  export type SeccionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    libro?: boolean | Seccion$libroArgs<ExtArgs>
+    _count?: boolean | SeccionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SeccionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SeccionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SeccionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Seccion"
+    objects: {
+      libro: Prisma.$LibroPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nombre: string
+      createdAt: Date
+    }, ExtArgs["result"]["seccion"]>
+    composites: {}
+  }
+
+  type SeccionGetPayload<S extends boolean | null | undefined | SeccionDefaultArgs> = $Result.GetResult<Prisma.$SeccionPayload, S>
+
+  type SeccionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SeccionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SeccionCountAggregateInputType | true
+    }
+
+  export interface SeccionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Seccion'], meta: { name: 'Seccion' } }
+    /**
+     * Find zero or one Seccion that matches the filter.
+     * @param {SeccionFindUniqueArgs} args - Arguments to find a Seccion
+     * @example
+     * // Get one Seccion
+     * const seccion = await prisma.seccion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SeccionFindUniqueArgs>(args: SelectSubset<T, SeccionFindUniqueArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Seccion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SeccionFindUniqueOrThrowArgs} args - Arguments to find a Seccion
+     * @example
+     * // Get one Seccion
+     * const seccion = await prisma.seccion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SeccionFindUniqueOrThrowArgs>(args: SelectSubset<T, SeccionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Seccion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionFindFirstArgs} args - Arguments to find a Seccion
+     * @example
+     * // Get one Seccion
+     * const seccion = await prisma.seccion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SeccionFindFirstArgs>(args?: SelectSubset<T, SeccionFindFirstArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Seccion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionFindFirstOrThrowArgs} args - Arguments to find a Seccion
+     * @example
+     * // Get one Seccion
+     * const seccion = await prisma.seccion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SeccionFindFirstOrThrowArgs>(args?: SelectSubset<T, SeccionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Seccions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Seccions
+     * const seccions = await prisma.seccion.findMany()
+     * 
+     * // Get first 10 Seccions
+     * const seccions = await prisma.seccion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const seccionWithIdOnly = await prisma.seccion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SeccionFindManyArgs>(args?: SelectSubset<T, SeccionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Seccion.
+     * @param {SeccionCreateArgs} args - Arguments to create a Seccion.
+     * @example
+     * // Create one Seccion
+     * const Seccion = await prisma.seccion.create({
+     *   data: {
+     *     // ... data to create a Seccion
+     *   }
+     * })
+     * 
+     */
+    create<T extends SeccionCreateArgs>(args: SelectSubset<T, SeccionCreateArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Seccions.
+     * @param {SeccionCreateManyArgs} args - Arguments to create many Seccions.
+     * @example
+     * // Create many Seccions
+     * const seccion = await prisma.seccion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SeccionCreateManyArgs>(args?: SelectSubset<T, SeccionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Seccions and returns the data saved in the database.
+     * @param {SeccionCreateManyAndReturnArgs} args - Arguments to create many Seccions.
+     * @example
+     * // Create many Seccions
+     * const seccion = await prisma.seccion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Seccions and only return the `id`
+     * const seccionWithIdOnly = await prisma.seccion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SeccionCreateManyAndReturnArgs>(args?: SelectSubset<T, SeccionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Seccion.
+     * @param {SeccionDeleteArgs} args - Arguments to delete one Seccion.
+     * @example
+     * // Delete one Seccion
+     * const Seccion = await prisma.seccion.delete({
+     *   where: {
+     *     // ... filter to delete one Seccion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SeccionDeleteArgs>(args: SelectSubset<T, SeccionDeleteArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Seccion.
+     * @param {SeccionUpdateArgs} args - Arguments to update one Seccion.
+     * @example
+     * // Update one Seccion
+     * const seccion = await prisma.seccion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SeccionUpdateArgs>(args: SelectSubset<T, SeccionUpdateArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Seccions.
+     * @param {SeccionDeleteManyArgs} args - Arguments to filter Seccions to delete.
+     * @example
+     * // Delete a few Seccions
+     * const { count } = await prisma.seccion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SeccionDeleteManyArgs>(args?: SelectSubset<T, SeccionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seccions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Seccions
+     * const seccion = await prisma.seccion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SeccionUpdateManyArgs>(args: SelectSubset<T, SeccionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seccions and returns the data updated in the database.
+     * @param {SeccionUpdateManyAndReturnArgs} args - Arguments to update many Seccions.
+     * @example
+     * // Update many Seccions
+     * const seccion = await prisma.seccion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Seccions and only return the `id`
+     * const seccionWithIdOnly = await prisma.seccion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SeccionUpdateManyAndReturnArgs>(args: SelectSubset<T, SeccionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Seccion.
+     * @param {SeccionUpsertArgs} args - Arguments to update or create a Seccion.
+     * @example
+     * // Update or create a Seccion
+     * const seccion = await prisma.seccion.upsert({
+     *   create: {
+     *     // ... data to create a Seccion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Seccion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SeccionUpsertArgs>(args: SelectSubset<T, SeccionUpsertArgs<ExtArgs>>): Prisma__SeccionClient<$Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Seccions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionCountArgs} args - Arguments to filter Seccions to count.
+     * @example
+     * // Count the number of Seccions
+     * const count = await prisma.seccion.count({
+     *   where: {
+     *     // ... the filter for the Seccions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SeccionCountArgs>(
+      args?: Subset<T, SeccionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SeccionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Seccion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SeccionAggregateArgs>(args: Subset<T, SeccionAggregateArgs>): Prisma.PrismaPromise<GetSeccionAggregateType<T>>
+
+    /**
+     * Group by Seccion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeccionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SeccionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SeccionGroupByArgs['orderBy'] }
+        : { orderBy?: SeccionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SeccionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSeccionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Seccion model
+   */
+  readonly fields: SeccionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Seccion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SeccionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    libro<T extends Seccion$libroArgs<ExtArgs> = {}>(args?: Subset<T, Seccion$libroArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LibroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Seccion model
+   */
+  interface SeccionFieldRefs {
+    readonly id: FieldRef<"Seccion", 'Int'>
+    readonly nombre: FieldRef<"Seccion", 'String'>
+    readonly createdAt: FieldRef<"Seccion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Seccion findUnique
+   */
+  export type SeccionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter, which Seccion to fetch.
+     */
+    where: SeccionWhereUniqueInput
+  }
+
+  /**
+   * Seccion findUniqueOrThrow
+   */
+  export type SeccionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter, which Seccion to fetch.
+     */
+    where: SeccionWhereUniqueInput
+  }
+
+  /**
+   * Seccion findFirst
+   */
+  export type SeccionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter, which Seccion to fetch.
+     */
+    where?: SeccionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seccions to fetch.
+     */
+    orderBy?: SeccionOrderByWithRelationInput | SeccionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Seccions.
+     */
+    cursor?: SeccionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seccions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seccions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Seccions.
+     */
+    distinct?: SeccionScalarFieldEnum | SeccionScalarFieldEnum[]
+  }
+
+  /**
+   * Seccion findFirstOrThrow
+   */
+  export type SeccionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter, which Seccion to fetch.
+     */
+    where?: SeccionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seccions to fetch.
+     */
+    orderBy?: SeccionOrderByWithRelationInput | SeccionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Seccions.
+     */
+    cursor?: SeccionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seccions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seccions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Seccions.
+     */
+    distinct?: SeccionScalarFieldEnum | SeccionScalarFieldEnum[]
+  }
+
+  /**
+   * Seccion findMany
+   */
+  export type SeccionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter, which Seccions to fetch.
+     */
+    where?: SeccionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seccions to fetch.
+     */
+    orderBy?: SeccionOrderByWithRelationInput | SeccionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Seccions.
+     */
+    cursor?: SeccionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seccions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seccions.
+     */
+    skip?: number
+    distinct?: SeccionScalarFieldEnum | SeccionScalarFieldEnum[]
+  }
+
+  /**
+   * Seccion create
+   */
+  export type SeccionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Seccion.
+     */
+    data: XOR<SeccionCreateInput, SeccionUncheckedCreateInput>
+  }
+
+  /**
+   * Seccion createMany
+   */
+  export type SeccionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Seccions.
+     */
+    data: SeccionCreateManyInput | SeccionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Seccion createManyAndReturn
+   */
+  export type SeccionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Seccions.
+     */
+    data: SeccionCreateManyInput | SeccionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Seccion update
+   */
+  export type SeccionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Seccion.
+     */
+    data: XOR<SeccionUpdateInput, SeccionUncheckedUpdateInput>
+    /**
+     * Choose, which Seccion to update.
+     */
+    where: SeccionWhereUniqueInput
+  }
+
+  /**
+   * Seccion updateMany
+   */
+  export type SeccionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Seccions.
+     */
+    data: XOR<SeccionUpdateManyMutationInput, SeccionUncheckedUpdateManyInput>
+    /**
+     * Filter which Seccions to update
+     */
+    where?: SeccionWhereInput
+    /**
+     * Limit how many Seccions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Seccion updateManyAndReturn
+   */
+  export type SeccionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * The data used to update Seccions.
+     */
+    data: XOR<SeccionUpdateManyMutationInput, SeccionUncheckedUpdateManyInput>
+    /**
+     * Filter which Seccions to update
+     */
+    where?: SeccionWhereInput
+    /**
+     * Limit how many Seccions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Seccion upsert
+   */
+  export type SeccionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Seccion to update in case it exists.
+     */
+    where: SeccionWhereUniqueInput
+    /**
+     * In case the Seccion found by the `where` argument doesn't exist, create a new Seccion with this data.
+     */
+    create: XOR<SeccionCreateInput, SeccionUncheckedCreateInput>
+    /**
+     * In case the Seccion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SeccionUpdateInput, SeccionUncheckedUpdateInput>
+  }
+
+  /**
+   * Seccion delete
+   */
+  export type SeccionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+    /**
+     * Filter which Seccion to delete.
+     */
+    where: SeccionWhereUniqueInput
+  }
+
+  /**
+   * Seccion deleteMany
+   */
+  export type SeccionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Seccions to delete
+     */
+    where?: SeccionWhereInput
+    /**
+     * Limit how many Seccions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Seccion.libro
+   */
+  export type Seccion$libroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Libro
+     */
+    select?: LibroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Libro
+     */
+    omit?: LibroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LibroInclude<ExtArgs> | null
+    where?: LibroWhereInput
+    orderBy?: LibroOrderByWithRelationInput | LibroOrderByWithRelationInput[]
+    cursor?: LibroWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LibroScalarFieldEnum | LibroScalarFieldEnum[]
+  }
+
+  /**
+   * Seccion without action
+   */
+  export type SeccionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Seccion
+     */
+    select?: SeccionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Seccion
+     */
+    omit?: SeccionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeccionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4546,7 +5763,7 @@ export namespace Prisma {
     userId: 'userId',
     autorId: 'autorId',
     createdAt: 'createdAt',
-    seccion: 'seccion'
+    seccionId: 'seccionId'
   };
 
   export type LibroScalarFieldEnum = (typeof LibroScalarFieldEnum)[keyof typeof LibroScalarFieldEnum]
@@ -4561,6 +5778,15 @@ export namespace Prisma {
   };
 
   export type AutorScalarFieldEnum = (typeof AutorScalarFieldEnum)[keyof typeof AutorScalarFieldEnum]
+
+
+  export const SeccionScalarFieldEnum: {
+    id: 'id',
+    nombre: 'nombre',
+    createdAt: 'createdAt'
+  };
+
+  export type SeccionScalarFieldEnum = (typeof SeccionScalarFieldEnum)[keyof typeof SeccionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4645,20 +5871,6 @@ export namespace Prisma {
    * Reference to a field of type 'Role[]'
    */
   export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Seccion'
-   */
-  export type EnumSeccionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seccion'>
-    
-
-
-  /**
-   * Reference to a field of type 'Seccion[]'
-   */
-  export type ListEnumSeccionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Seccion[]'>
     
 
 
@@ -4753,7 +5965,8 @@ export namespace Prisma {
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
+    seccionId?: IntNullableFilter<"Libro"> | number | null
+    seccion?: XOR<SeccionNullableScalarRelationFilter, SeccionWhereInput> | null
     autor?: XOR<AutorScalarRelationFilter, AutorWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -4767,7 +5980,8 @@ export namespace Prisma {
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    seccion?: SortOrder
+    seccionId?: SortOrderInput | SortOrder
+    seccion?: SeccionOrderByWithRelationInput
     autor?: AutorOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
   }
@@ -4784,7 +5998,8 @@ export namespace Prisma {
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
+    seccionId?: IntNullableFilter<"Libro"> | number | null
+    seccion?: XOR<SeccionNullableScalarRelationFilter, SeccionWhereInput> | null
     autor?: XOR<AutorScalarRelationFilter, AutorWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -4798,7 +6013,7 @@ export namespace Prisma {
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    seccion?: SortOrder
+    seccionId?: SortOrderInput | SortOrder
     _count?: LibroCountOrderByAggregateInput
     _avg?: LibroAvgOrderByAggregateInput
     _max?: LibroMaxOrderByAggregateInput
@@ -4818,7 +6033,7 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Libro"> | number
     autorId?: IntWithAggregatesFilter<"Libro"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Libro"> | Date | string
-    seccion?: EnumSeccionWithAggregatesFilter<"Libro"> | $Enums.Seccion
+    seccionId?: IntNullableWithAggregatesFilter<"Libro"> | number | null
   }
 
   export type AutorWhereInput = {
@@ -4876,6 +6091,53 @@ export namespace Prisma {
     bio?: StringNullableWithAggregatesFilter<"Autor"> | string | null
     foto?: StringNullableWithAggregatesFilter<"Autor"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Autor"> | Date | string
+  }
+
+  export type SeccionWhereInput = {
+    AND?: SeccionWhereInput | SeccionWhereInput[]
+    OR?: SeccionWhereInput[]
+    NOT?: SeccionWhereInput | SeccionWhereInput[]
+    id?: IntFilter<"Seccion"> | number
+    nombre?: StringFilter<"Seccion"> | string
+    createdAt?: DateTimeFilter<"Seccion"> | Date | string
+    libro?: LibroListRelationFilter
+  }
+
+  export type SeccionOrderByWithRelationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    createdAt?: SortOrder
+    libro?: LibroOrderByRelationAggregateInput
+  }
+
+  export type SeccionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    nombre?: string
+    AND?: SeccionWhereInput | SeccionWhereInput[]
+    OR?: SeccionWhereInput[]
+    NOT?: SeccionWhereInput | SeccionWhereInput[]
+    createdAt?: DateTimeFilter<"Seccion"> | Date | string
+    libro?: LibroListRelationFilter
+  }, "id" | "nombre">
+
+  export type SeccionOrderByWithAggregationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    createdAt?: SortOrder
+    _count?: SeccionCountOrderByAggregateInput
+    _avg?: SeccionAvgOrderByAggregateInput
+    _max?: SeccionMaxOrderByAggregateInput
+    _min?: SeccionMinOrderByAggregateInput
+    _sum?: SeccionSumOrderByAggregateInput
+  }
+
+  export type SeccionScalarWhereWithAggregatesInput = {
+    AND?: SeccionScalarWhereWithAggregatesInput | SeccionScalarWhereWithAggregatesInput[]
+    OR?: SeccionScalarWhereWithAggregatesInput[]
+    NOT?: SeccionScalarWhereWithAggregatesInput | SeccionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Seccion"> | number
+    nombre?: StringWithAggregatesFilter<"Seccion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Seccion"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -4948,7 +6210,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccion?: SeccionCreateNestedOneWithoutLibroInput
     autor: AutorCreateNestedOneWithoutLibroInput
     user: UserCreateNestedOneWithoutLibroInput
   }
@@ -4962,7 +6224,7 @@ export namespace Prisma {
     userId: number
     autorId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroUpdateInput = {
@@ -4971,7 +6233,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccion?: SeccionUpdateOneWithoutLibroNestedInput
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
   }
@@ -4985,7 +6247,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LibroCreateManyInput = {
@@ -4997,7 +6259,7 @@ export namespace Prisma {
     userId: number
     autorId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroUpdateManyMutationInput = {
@@ -5006,7 +6268,6 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
   }
 
   export type LibroUncheckedUpdateManyInput = {
@@ -5018,7 +6279,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type AutorCreateInput = {
@@ -5075,6 +6336,49 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     foto?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SeccionCreateInput = {
+    nombre: string
+    createdAt?: Date | string
+    libro?: LibroCreateNestedManyWithoutSeccionInput
+  }
+
+  export type SeccionUncheckedCreateInput = {
+    id?: number
+    nombre: string
+    createdAt?: Date | string
+    libro?: LibroUncheckedCreateNestedManyWithoutSeccionInput
+  }
+
+  export type SeccionUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    libro?: LibroUpdateManyWithoutSeccionNestedInput
+  }
+
+  export type SeccionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    libro?: LibroUncheckedUpdateManyWithoutSeccionNestedInput
+  }
+
+  export type SeccionCreateManyInput = {
+    id?: number
+    nombre: string
+    createdAt?: Date | string
+  }
+
+  export type SeccionUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SeccionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5240,11 +6544,20 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type EnumSeccionFilter<$PrismaModel = never> = {
-    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
-    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    not?: NestedEnumSeccionFilter<$PrismaModel> | $Enums.Seccion
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type SeccionNullableScalarRelationFilter = {
+    is?: SeccionWhereInput | null
+    isNot?: SeccionWhereInput | null
   }
 
   export type AutorScalarRelationFilter = {
@@ -5271,13 +6584,14 @@ export namespace Prisma {
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    seccion?: SortOrder
+    seccionId?: SortOrder
   }
 
   export type LibroAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    seccionId?: SortOrder
   }
 
   export type LibroMaxOrderByAggregateInput = {
@@ -5289,7 +6603,7 @@ export namespace Prisma {
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    seccion?: SortOrder
+    seccionId?: SortOrder
   }
 
   export type LibroMinOrderByAggregateInput = {
@@ -5301,13 +6615,14 @@ export namespace Prisma {
     userId?: SortOrder
     autorId?: SortOrder
     createdAt?: SortOrder
-    seccion?: SortOrder
+    seccionId?: SortOrder
   }
 
   export type LibroSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    seccionId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5328,14 +6643,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumSeccionWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
-    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    not?: NestedEnumSeccionWithAggregatesFilter<$PrismaModel> | $Enums.Seccion
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSeccionFilter<$PrismaModel>
-    _max?: NestedEnumSeccionFilter<$PrismaModel>
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type AutorCountOrderByAggregateInput = {
@@ -5367,6 +6688,32 @@ export namespace Prisma {
   }
 
   export type AutorSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SeccionCountOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SeccionAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SeccionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SeccionMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SeccionSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -5432,6 +6779,12 @@ export namespace Prisma {
     deleteMany?: LibroScalarWhereInput | LibroScalarWhereInput[]
   }
 
+  export type SeccionCreateNestedOneWithoutLibroInput = {
+    create?: XOR<SeccionCreateWithoutLibroInput, SeccionUncheckedCreateWithoutLibroInput>
+    connectOrCreate?: SeccionCreateOrConnectWithoutLibroInput
+    connect?: SeccionWhereUniqueInput
+  }
+
   export type AutorCreateNestedOneWithoutLibroInput = {
     create?: XOR<AutorCreateWithoutLibroInput, AutorUncheckedCreateWithoutLibroInput>
     connectOrCreate?: AutorCreateOrConnectWithoutLibroInput
@@ -5448,8 +6801,14 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type EnumSeccionFieldUpdateOperationsInput = {
-    set?: $Enums.Seccion
+  export type SeccionUpdateOneWithoutLibroNestedInput = {
+    create?: XOR<SeccionCreateWithoutLibroInput, SeccionUncheckedCreateWithoutLibroInput>
+    connectOrCreate?: SeccionCreateOrConnectWithoutLibroInput
+    upsert?: SeccionUpsertWithoutLibroInput
+    disconnect?: SeccionWhereInput | boolean
+    delete?: SeccionWhereInput | boolean
+    connect?: SeccionWhereUniqueInput
+    update?: XOR<XOR<SeccionUpdateToOneWithWhereWithoutLibroInput, SeccionUpdateWithoutLibroInput>, SeccionUncheckedUpdateWithoutLibroInput>
   }
 
   export type AutorUpdateOneRequiredWithoutLibroNestedInput = {
@@ -5466,6 +6825,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutLibroInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLibroInput, UserUpdateWithoutLibroInput>, UserUncheckedUpdateWithoutLibroInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type LibroCreateNestedManyWithoutAutorInput = {
@@ -5507,6 +6874,48 @@ export namespace Prisma {
     connect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
     update?: LibroUpdateWithWhereUniqueWithoutAutorInput | LibroUpdateWithWhereUniqueWithoutAutorInput[]
     updateMany?: LibroUpdateManyWithWhereWithoutAutorInput | LibroUpdateManyWithWhereWithoutAutorInput[]
+    deleteMany?: LibroScalarWhereInput | LibroScalarWhereInput[]
+  }
+
+  export type LibroCreateNestedManyWithoutSeccionInput = {
+    create?: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput> | LibroCreateWithoutSeccionInput[] | LibroUncheckedCreateWithoutSeccionInput[]
+    connectOrCreate?: LibroCreateOrConnectWithoutSeccionInput | LibroCreateOrConnectWithoutSeccionInput[]
+    createMany?: LibroCreateManySeccionInputEnvelope
+    connect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+  }
+
+  export type LibroUncheckedCreateNestedManyWithoutSeccionInput = {
+    create?: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput> | LibroCreateWithoutSeccionInput[] | LibroUncheckedCreateWithoutSeccionInput[]
+    connectOrCreate?: LibroCreateOrConnectWithoutSeccionInput | LibroCreateOrConnectWithoutSeccionInput[]
+    createMany?: LibroCreateManySeccionInputEnvelope
+    connect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+  }
+
+  export type LibroUpdateManyWithoutSeccionNestedInput = {
+    create?: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput> | LibroCreateWithoutSeccionInput[] | LibroUncheckedCreateWithoutSeccionInput[]
+    connectOrCreate?: LibroCreateOrConnectWithoutSeccionInput | LibroCreateOrConnectWithoutSeccionInput[]
+    upsert?: LibroUpsertWithWhereUniqueWithoutSeccionInput | LibroUpsertWithWhereUniqueWithoutSeccionInput[]
+    createMany?: LibroCreateManySeccionInputEnvelope
+    set?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    disconnect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    delete?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    connect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    update?: LibroUpdateWithWhereUniqueWithoutSeccionInput | LibroUpdateWithWhereUniqueWithoutSeccionInput[]
+    updateMany?: LibroUpdateManyWithWhereWithoutSeccionInput | LibroUpdateManyWithWhereWithoutSeccionInput[]
+    deleteMany?: LibroScalarWhereInput | LibroScalarWhereInput[]
+  }
+
+  export type LibroUncheckedUpdateManyWithoutSeccionNestedInput = {
+    create?: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput> | LibroCreateWithoutSeccionInput[] | LibroUncheckedCreateWithoutSeccionInput[]
+    connectOrCreate?: LibroCreateOrConnectWithoutSeccionInput | LibroCreateOrConnectWithoutSeccionInput[]
+    upsert?: LibroUpsertWithWhereUniqueWithoutSeccionInput | LibroUpsertWithWhereUniqueWithoutSeccionInput[]
+    createMany?: LibroCreateManySeccionInputEnvelope
+    set?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    disconnect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    delete?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    connect?: LibroWhereUniqueInput | LibroWhereUniqueInput[]
+    update?: LibroUpdateWithWhereUniqueWithoutSeccionInput | LibroUpdateWithWhereUniqueWithoutSeccionInput[]
+    updateMany?: LibroUpdateManyWithWhereWithoutSeccionInput | LibroUpdateManyWithWhereWithoutSeccionInput[]
     deleteMany?: LibroScalarWhereInput | LibroScalarWhereInput[]
   }
 
@@ -5635,11 +7044,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumSeccionFilter<$PrismaModel = never> = {
-    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
-    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    not?: NestedEnumSeccionFilter<$PrismaModel> | $Enums.Seccion
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5659,7 +7072,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -5667,17 +7080,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumSeccionWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Seccion | EnumSeccionFieldRefInput<$PrismaModel>
-    in?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Seccion[] | ListEnumSeccionFieldRefInput<$PrismaModel>
-    not?: NestedEnumSeccionWithAggregatesFilter<$PrismaModel> | $Enums.Seccion
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSeccionFilter<$PrismaModel>
-    _max?: NestedEnumSeccionFilter<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type LibroCreateWithoutUserInput = {
@@ -5686,7 +7105,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccion?: SeccionCreateNestedOneWithoutLibroInput
     autor: AutorCreateNestedOneWithoutLibroInput
   }
 
@@ -5698,7 +7117,7 @@ export namespace Prisma {
     imagen?: string | null
     autorId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroCreateOrConnectWithoutUserInput = {
@@ -5739,7 +7158,23 @@ export namespace Prisma {
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
     createdAt?: DateTimeFilter<"Libro"> | Date | string
-    seccion?: EnumSeccionFilter<"Libro"> | $Enums.Seccion
+    seccionId?: IntNullableFilter<"Libro"> | number | null
+  }
+
+  export type SeccionCreateWithoutLibroInput = {
+    nombre: string
+    createdAt?: Date | string
+  }
+
+  export type SeccionUncheckedCreateWithoutLibroInput = {
+    id?: number
+    nombre: string
+    createdAt?: Date | string
+  }
+
+  export type SeccionCreateOrConnectWithoutLibroInput = {
+    where: SeccionWhereUniqueInput
+    create: XOR<SeccionCreateWithoutLibroInput, SeccionUncheckedCreateWithoutLibroInput>
   }
 
   export type AutorCreateWithoutLibroInput = {
@@ -5782,6 +7217,28 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutLibroInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutLibroInput, UserUncheckedCreateWithoutLibroInput>
+  }
+
+  export type SeccionUpsertWithoutLibroInput = {
+    update: XOR<SeccionUpdateWithoutLibroInput, SeccionUncheckedUpdateWithoutLibroInput>
+    create: XOR<SeccionCreateWithoutLibroInput, SeccionUncheckedCreateWithoutLibroInput>
+    where?: SeccionWhereInput
+  }
+
+  export type SeccionUpdateToOneWithWhereWithoutLibroInput = {
+    where?: SeccionWhereInput
+    data: XOR<SeccionUpdateWithoutLibroInput, SeccionUncheckedUpdateWithoutLibroInput>
+  }
+
+  export type SeccionUpdateWithoutLibroInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SeccionUncheckedUpdateWithoutLibroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AutorUpsertWithoutLibroInput = {
@@ -5844,7 +7301,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccion?: SeccionCreateNestedOneWithoutLibroInput
     user: UserCreateNestedOneWithoutLibroInput
   }
 
@@ -5856,7 +7313,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroCreateOrConnectWithoutAutorInput = {
@@ -5885,6 +7342,53 @@ export namespace Prisma {
     data: XOR<LibroUpdateManyMutationInput, LibroUncheckedUpdateManyWithoutAutorInput>
   }
 
+  export type LibroCreateWithoutSeccionInput = {
+    titulo: string
+    genero: string
+    descripcion?: string | null
+    imagen?: string | null
+    createdAt?: Date | string
+    autor: AutorCreateNestedOneWithoutLibroInput
+    user: UserCreateNestedOneWithoutLibroInput
+  }
+
+  export type LibroUncheckedCreateWithoutSeccionInput = {
+    id?: number
+    titulo: string
+    genero: string
+    descripcion?: string | null
+    imagen?: string | null
+    userId: number
+    autorId: number
+    createdAt?: Date | string
+  }
+
+  export type LibroCreateOrConnectWithoutSeccionInput = {
+    where: LibroWhereUniqueInput
+    create: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput>
+  }
+
+  export type LibroCreateManySeccionInputEnvelope = {
+    data: LibroCreateManySeccionInput | LibroCreateManySeccionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LibroUpsertWithWhereUniqueWithoutSeccionInput = {
+    where: LibroWhereUniqueInput
+    update: XOR<LibroUpdateWithoutSeccionInput, LibroUncheckedUpdateWithoutSeccionInput>
+    create: XOR<LibroCreateWithoutSeccionInput, LibroUncheckedCreateWithoutSeccionInput>
+  }
+
+  export type LibroUpdateWithWhereUniqueWithoutSeccionInput = {
+    where: LibroWhereUniqueInput
+    data: XOR<LibroUpdateWithoutSeccionInput, LibroUncheckedUpdateWithoutSeccionInput>
+  }
+
+  export type LibroUpdateManyWithWhereWithoutSeccionInput = {
+    where: LibroScalarWhereInput
+    data: XOR<LibroUpdateManyMutationInput, LibroUncheckedUpdateManyWithoutSeccionInput>
+  }
+
   export type LibroCreateManyUserInput = {
     id?: number
     titulo: string
@@ -5893,7 +7397,7 @@ export namespace Prisma {
     imagen?: string | null
     autorId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroUpdateWithoutUserInput = {
@@ -5902,7 +7406,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccion?: SeccionUpdateOneWithoutLibroNestedInput
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
   }
 
@@ -5914,7 +7418,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LibroUncheckedUpdateManyWithoutUserInput = {
@@ -5925,7 +7429,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     autorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LibroCreateManyAutorInput = {
@@ -5936,7 +7440,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     createdAt?: Date | string
-    seccion: $Enums.Seccion
+    seccionId?: number | null
   }
 
   export type LibroUpdateWithoutAutorInput = {
@@ -5945,7 +7449,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccion?: SeccionUpdateOneWithoutLibroNestedInput
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
   }
 
@@ -5957,7 +7461,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type LibroUncheckedUpdateManyWithoutAutorInput = {
@@ -5968,7 +7472,50 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seccion?: EnumSeccionFieldUpdateOperationsInput | $Enums.Seccion
+    seccionId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type LibroCreateManySeccionInput = {
+    id?: number
+    titulo: string
+    genero: string
+    descripcion?: string | null
+    imagen?: string | null
+    userId: number
+    autorId: number
+    createdAt?: Date | string
+  }
+
+  export type LibroUpdateWithoutSeccionInput = {
+    titulo?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
+    user?: UserUpdateOneRequiredWithoutLibroNestedInput
+  }
+
+  export type LibroUncheckedUpdateWithoutSeccionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    autorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LibroUncheckedUpdateManyWithoutSeccionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    titulo?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    autorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

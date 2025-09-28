@@ -24,15 +24,7 @@ function FantasiaPage() {
             <p>Viaja a mundos imposibles, donde la magia es real y la aventura te espera en cada página.</p>
         <div className="book-grid">
         {libros && libros.length > 0 ? (
-            libros.map(libro => (
-                <BookCard 
-                key={libro.id}
-                titulo={libro.titulo}
-                autor={libro.autor}
-            descripcion={libro.descripcion}
-            imagen={libro.imagen}
-            />
-        ))
+            libros.map(libro => <BookCard key={libro.id} libro={libro} />)
     ) : (
         <p>No hay libros de fantasía disponibles.</p>
     )}

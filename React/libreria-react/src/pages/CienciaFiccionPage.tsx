@@ -24,15 +24,7 @@ function CienciaFiccionPage() {
             <p>Cuestiona los límites de la realidad, viaja a futuros lejanos y explora las grandes ideas que definirán a la humanidad.</p>
         <div className="book-grid">
         {libros && libros.length > 0 ? (
-            libros.map(libro => (
-                <BookCard 
-                key={libro.id}
-                titulo={libro.titulo}
-                autor={libro.autor}
-            descripcion={libro.descripcion}
-            imagen={libro.imagen}
-            />
-        ))
+            libros.map(libro => <BookCard key={libro.id} libro={libro} />)
     ) : (
         <p>No hay libros de ciencia ficcion disponibles.</p>
     )}

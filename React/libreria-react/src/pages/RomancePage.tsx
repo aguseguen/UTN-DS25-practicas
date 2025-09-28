@@ -23,17 +23,9 @@ function RomancePage() {
         <h2>Romance Juvenil</h2>
         <p>Historias de amores intensos, amistades inquebrantables y las emociones que te atraparán hasta la última página.</p>
         <div className="book-grid">
-        {libros && libros.length > 0 ? (
-            libros.map(libro => (
-                <BookCard 
-                    key={libro.id}
-                    titulo={libro.titulo}
-                    autor={libro.autor}
-            descripcion={libro.descripcion}
-            imagen={libro.imagen}
-        />
-        ))
-    ) : (
+        {libros && libros.length > 0 ? 
+            (libros.map(libro => <BookCard key={libro.id} libro={libro} />)) : 
+            (
         <p>No hay libros de romance juvenil disponibles.</p>
     )}
         </div>

@@ -7,7 +7,6 @@ import { createSeccionSchema, updateSeccionSchema } from '../validations/seccion
 const router = Router();
 
 // Rutas para secciones
-router.get('/debug', seccionController.debugSecciones);
 router.get('/',
     authenticate,
     authorize('ADMIN', 'USER'),

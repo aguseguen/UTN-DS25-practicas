@@ -116,16 +116,14 @@ export async function getLibrosDestacados(): Promise<LibroData[]> {
 export async function getLibrosPorGenero(genero: string): Promise<LibroData[]> {
     const libros = await prisma.libro.findMany({
         where: {
-            seccion: {
-                nombre: {
+                genero: {
                     equals: genero,
                     mode: 'insensitive',
                 }
-            },
         },
         include: {
             autor: true,
-            seccion: true
+            seccion: true,
         }
     });
     return libros.map(toLibro);

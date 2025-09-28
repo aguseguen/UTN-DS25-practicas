@@ -6,12 +6,18 @@ import { userRoutes } from './routes/user.routes';
 import { autorRoutes } from './routes/autor.routes';
 import { seccionRoutes } from './routes/seccion.routes';
 import { authRoutes } from './routes/auth.routes';
+import { handleError } from './middlewares/error.middleware';
 import { logRequest } from './middlewares/logger.middleware';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
 const app = express();
-const PORT = 3000;
 
 //Middlewares
 const corsOptions = {
@@ -25,7 +31,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Logger Middleware
-app.use(logRequest); 
+app.use(logRequest);
+const publicPath = path.resolve(__dirname, '../public');
+app.use('/public', express.static(publicPath));
 
 //Rutas
 app.use('/api/libros', libroRoutes);
@@ -35,6 +43,10 @@ app.use('/api/secciones', seccionRoutes);
 app.use('/api/auth', authRoutes);
 
 
+// Middleware de manejo de errores
+app.use(handleError);
+
+//Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Servidor de la API corriendo en http://localhost:${PORT}`);
 });

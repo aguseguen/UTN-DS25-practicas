@@ -9,6 +9,7 @@ const toLibro = (l: PrismaLibro & { autor: Autor, seccion: Seccion | null }): Li
     descripcion: l.descripcion ?? '',
     imagen: l.imagen ?? '',
     autor: l.autor.nombre,
+    destacado: l.destacado,
     seccion: l.seccion?.nombre ?? 'Sin seccion',
     createdAt: l.createdAt,
 });
@@ -26,7 +27,7 @@ export async function getAllLibros(limit: number = 10): Promise<LibroData[]> {
 // obtener libro por id 
 export async function getLibroById(id: number): Promise<LibroData> {
   const libro = await prisma.libro.findUniqueOrThrow({
-    where: { id },
+    where: { id : id },
     include: { autor: true, seccion: true },
   });
 
@@ -104,32 +105,29 @@ export async function deleteLibro(id: number): Promise<void> {
 
 // obtener libros destacados (un libro por genero)
 export async function getLibrosDestacados(): Promise<LibroData[]> {
-  const generos = await prisma.libro.findMany({
-    distinct: ['genero'],
-    select: { genero: true },
-  });
-
-  const librosDestacados: LibroData[] = [];
-
-  for (const genero of generos) {
-    const libro = await prisma.libro.findFirst({
-      where: { genero: genero.genero },
-      include: { autor: true, seccion: true },
-    });
-    if (libro) {
-      librosDestacados.push(toLibro(libro));
-    }
-  }
-
-  return librosDestacados;
-}
-
-// obtener libros por genero
-export async function getLibrosPorGenero(req: GetLibrosPorGeneroRequest): Promise<LibroData[]> {
   const libros = await prisma.libro.findMany({
-    where: { genero: req.genero },
+    where: { destacado: true },
     include: { autor: true, seccion: true },
   });
   return libros.map(toLibro);
+}
+
+// obtener libros por genero
+export async function getLibrosPorGenero(genero: string): Promise<LibroData[]> {
+    const libros = await prisma.libro.findMany({
+        where: {
+            seccion: {
+                nombre: {
+                    equals: genero,
+                    mode: 'insensitive',
+                }
+            },
+        },
+        include: {
+            autor: true,
+            seccion: true
+        }
+    });
+    return libros.map(toLibro);
 }
 

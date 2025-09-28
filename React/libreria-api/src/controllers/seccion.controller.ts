@@ -1,3 +1,4 @@
+import prisma from '../config/prisma';
 import { Request, Response, NextFunction } from 'express';
 import * as seccionService from '../services/seccion.service';
 
@@ -54,3 +55,23 @@ export async function deleteSeccion(req: Request, res: Response, next: NextFunct
   }
 }
 
+export async function debugSecciones(req: Request, res: Response, next: NextFunction) {
+    try {
+        console.log('\n--- 🕵️‍♂️ INICIANDO DEBUG DE SECCIONES 🕵️‍♂️ ---');
+        const secciones = await prisma.seccion.findMany();
+        
+        console.log('Secciones encontradas en la base de datos:');
+        secciones.forEach(seccion => {
+            // Este log nos mostrará el nombre exacto, rodeado de || para ver espacios
+            console.log(`--> |${seccion.nombre}| (ID: ${seccion.id})`);
+        });
+        
+        console.log('--- ✅ DEBUG FINALIZADO ---');
+        res.status(200).json({
+            message: "Debug completado. Revisa la consola del backend.",
+            secciones: secciones,
+        });
+    } catch (error) {
+        next(error);
+    }
+}

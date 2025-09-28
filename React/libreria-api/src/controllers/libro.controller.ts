@@ -13,13 +13,20 @@ export async function getAllLibros(_req: Request, res: Response, next: NextFunct
 
 // GET /api/libros/:id
 export async function getLibroById(req: Request, res: Response, next: NextFunction) {
-  try {
-    const id = Number(req.params.id);
-    const libro = await libroService.getLibroById(id);
-    res.json({success: true, libro, message: 'Libro encontrado' });
-  } catch (e) {
-    next(e);
-  }
+    const { id } = req.params;
+    const libroId = parseInt(id, 10); 
+
+    // Si el 'id' no es un número válido, pasa el control al siguiente middleware/ruta.
+    if (isNaN(libroId)) {
+        return next(); 
+    }
+
+    try {
+        const libro = await libroService.getLibroById(libroId);
+        res.status(200).json(libro);
+    } catch (error) {
+        next(error);
+    }
 }
 
 // POST /api/libros
@@ -69,8 +76,8 @@ export async function getLibrosDestacados(_req: Request, res: Response, next: Ne
 export async function getLibrosPorGenero(req: Request, res: Response, next: NextFunction) {
   try {
     const { genero } = req.params;
-    const libros = await libroService.getLibrosPorGenero({ genero });
-    res.json(libros);
+    const libros = await libroService.getLibrosPorGenero(genero);
+    res.status(200).json(libros);
   } catch (e) {
     next(e);
   }

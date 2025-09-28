@@ -1,53 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useFetch } from '../hooks/useFetch';
 import BookCard from '../components/BookCard';
-import { Libro } from '../types/libro.types';
+import { LibroData as Libro } from '../types/libro.types';
+
+type LibrosCienciaFiccionResponse = Libro[];
+
 
 function CienciaFiccionPage() {
-    const [libros, setLibros] = useState<Libro[]> ([]);
-    const [cargando, setCargando] = useState(true);
-    const [error, setError] = useState<string | null> (null);
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const url = `${apiUrl}/libros/genero/scifi`;
+    const { data: libros, loading, error } = useFetch<LibrosCienciaFiccionResponse>(url);
 
-    useEffect( () => {
-        const fetchLibrosDeCienciaFiccion = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/libros/cienciaFiccion');
-                if (!response.ok) {
-                    throw new Error('Error al obtener los datos');
-                }
-                const data = await response.json();
-                setLibros(data);
-            } catch(error) {
-                setError("No se pudieron cargar los libros de ciencia ficcion");
-                console.error(error);
-            } finally {
-                setCargando(false);
-            }
-        };
-
-        fetchLibrosDeCienciaFiccion();
-    }, []);
+    if (loading) {
+        return <div className="container"><p>Cargando libros de ciencia ficcion...</p></div>;
+    }
     if (error) {
-    return <div className="container"><p style={{ color: 'red' }}>{error}</p></div>;
+        return <div className="container"><p style={{ color: 'red' }}>{error.message}</p></div>;
     }
 
-    if (cargando) {
-    return <div className="container"><p>Cargando libros de ciencia ficcion...</p></div>;
-    }
 
     return (
     <>
         <h2>Ciencia Ficcion</h2>
             <p>Cuestiona los límites de la realidad, viaja a futuros lejanos y explora las grandes ideas que definirán a la humanidad.</p>
         <div className="book-grid">
-        {libros.map(libro => (
-            <BookCard 
-            key={libro.id}
-            titulo={libro.titulo}
-            autor={libro.autor}
+        {libros && libros.length > 0 ? (
+            libros.map(libro => (
+                <BookCard 
+                key={libro.id}
+                titulo={libro.titulo}
+                autor={libro.autor}
             descripcion={libro.descripcion}
             imagen={libro.imagen}
             />
-        ))}
+        ))
+    ) : (
+        <p>No hay libros de ciencia ficcion disponibles.</p>
+    )}
         </div>
     </>
     );

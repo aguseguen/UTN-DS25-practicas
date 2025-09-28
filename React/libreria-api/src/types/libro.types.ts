@@ -5,6 +5,7 @@ export interface LibroData {
   autor: string;
   seccion: string;
   descripcion: string;
+  destacado: boolean;
   imagen: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -40,6 +41,7 @@ export interface CreateLibroRequest {
   titulo: string;
   genero: string;
   autorId: number;
+  destacado: boolean;
   seccionId?: number;
   descripcion?: string;
   imagen?: string;
@@ -55,6 +57,7 @@ export interface UpdateLibroRequest {
   titulo?: string;
   genero?: string;
   autorId?: number;
+  destacado?: boolean;
   seccionId?: number;
   descripcion?: string;
   imagen?: string;

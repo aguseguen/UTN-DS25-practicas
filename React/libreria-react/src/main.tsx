@@ -1,66 +1,44 @@
-// Archivo: src/main.jsx
-
-// 1. Herramientas de React y React Router
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-// 2. Importar el Layout Principal (la plantilla)
-import App from './App';
-
-// 3. Importar TODOS los componentes de página que creaste
-import HomePage from './pages/HomePage';
-import PsicologiaPage from './pages/PsicologiaPage';
-import RomancePage from './pages/RomancePage';
-import FantasiaPage from './pages/FantasiaPage';
-import CienciaFiccionPage from './pages/CienciaFiccionPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import App from 'src/App';
+import HomePage from 'src/pages/HomePage';
+import LoginPage from 'src/pages/LoginPage';
+import FantasiaPage from 'src/pages/FantasiaPage';
+import CienciaFiccionPage from 'src/pages/CienciaFiccionPage';
+import RomancePage from 'src/pages/RomancePage';
+import PsicologiaPage from 'src/pages/PsicologiaPage';
 import ContactoPage from './pages/ContactoPage';
 import RegistroPage from './pages/RegistroPage';
 
-// 4. Crear el "mapa" de rutas de tu aplicación
-const router = createBrowserRouter([
-  {
-    // Ruta Raíz: Todas las páginas usarán este layout
-    path: '/',
-    element: <App />, // El layout principal con Header, Nav y Footer
-    
-    // Rutas Hijas: Se renderizan dentro del <Outlet/> de App.jsx
-    children: [
-      {
-        index: true, // Esta es la página de inicio por defecto
-        element: <HomePage />,
-      },
-      {
-        path: 'psicologia',
-        element: <PsicologiaPage />,
-      },
-      {
-        path: 'romance',
-        element: <RomancePage />,
-      },
-      {
-        path: 'fantasia',
-        element: <FantasiaPage />,
-      },
-      {
-        path: 'ciencia-ficcion',
-        element: <CienciaFiccionPage />,
-      },
-      {
-        path: 'registro',
-        element: <RegistroPage />,
-      },
-      {
-        path: 'contacto',
-        element: <ContactoPage />,
-      },
-    ],
-  },
-]);
 
-// 5. Iniciar la aplicación con el router
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        {/* Ruta para el Login (no usa el layout principal) */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Rutas que usan el Layout Principal (Header, Nav, Footer) */}
+        <Route path="/" element={<App />}>
+          {/* La página de inicio */}
+          <Route index element={<HomePage />} />
+          <Route path="/genero/Fantasia" element={<FantasiaPage />} />
+          <Route path="/genero/scifi" element={<CienciaFiccionPage />} />
+          <Route path="/genero/Romance" element={<RomancePage />} />
+          <Route path="/genero/Psicologia" element={<PsicologiaPage />} />
+          <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/registro" element={<RegistroPage />} />
+        </Route>
+        <Route path="*" element={
+          <main style={{ padding: "1rem" }}>
+            <h2>¡Oops! Página no encontrada (404)</h2>
+            <p>La página que buscas no existe.</p>
+            <Link to="/">Volver al inicio</Link>
+          </main>
+        } />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
 );

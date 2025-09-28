@@ -2389,6 +2389,7 @@ export namespace Prisma {
     imagen: string | null
     userId: number | null
     autorId: number | null
+    destacado: boolean | null
     createdAt: Date | null
     seccionId: number | null
   }
@@ -2401,6 +2402,7 @@ export namespace Prisma {
     imagen: string | null
     userId: number | null
     autorId: number | null
+    destacado: boolean | null
     createdAt: Date | null
     seccionId: number | null
   }
@@ -2413,6 +2415,7 @@ export namespace Prisma {
     imagen: number
     userId: number
     autorId: number
+    destacado: number
     createdAt: number
     seccionId: number
     _all: number
@@ -2441,6 +2444,7 @@ export namespace Prisma {
     imagen?: true
     userId?: true
     autorId?: true
+    destacado?: true
     createdAt?: true
     seccionId?: true
   }
@@ -2453,6 +2457,7 @@ export namespace Prisma {
     imagen?: true
     userId?: true
     autorId?: true
+    destacado?: true
     createdAt?: true
     seccionId?: true
   }
@@ -2465,6 +2470,7 @@ export namespace Prisma {
     imagen?: true
     userId?: true
     autorId?: true
+    destacado?: true
     createdAt?: true
     seccionId?: true
     _all?: true
@@ -2564,6 +2570,7 @@ export namespace Prisma {
     imagen: string | null
     userId: number
     autorId: number
+    destacado: boolean
     createdAt: Date
     seccionId: number | null
     _count: LibroCountAggregateOutputType | null
@@ -2595,6 +2602,7 @@ export namespace Prisma {
     imagen?: boolean
     userId?: boolean
     autorId?: boolean
+    destacado?: boolean
     createdAt?: boolean
     seccionId?: boolean
     seccion?: boolean | Libro$seccionArgs<ExtArgs>
@@ -2610,6 +2618,7 @@ export namespace Prisma {
     imagen?: boolean
     userId?: boolean
     autorId?: boolean
+    destacado?: boolean
     createdAt?: boolean
     seccionId?: boolean
     seccion?: boolean | Libro$seccionArgs<ExtArgs>
@@ -2625,6 +2634,7 @@ export namespace Prisma {
     imagen?: boolean
     userId?: boolean
     autorId?: boolean
+    destacado?: boolean
     createdAt?: boolean
     seccionId?: boolean
     seccion?: boolean | Libro$seccionArgs<ExtArgs>
@@ -2640,11 +2650,12 @@ export namespace Prisma {
     imagen?: boolean
     userId?: boolean
     autorId?: boolean
+    destacado?: boolean
     createdAt?: boolean
     seccionId?: boolean
   }
 
-  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "createdAt" | "seccionId", ExtArgs["result"]["libro"]>
+  export type LibroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "genero" | "descripcion" | "imagen" | "userId" | "autorId" | "destacado" | "createdAt" | "seccionId", ExtArgs["result"]["libro"]>
   export type LibroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     seccion?: boolean | Libro$seccionArgs<ExtArgs>
     autor?: boolean | AutorDefaultArgs<ExtArgs>
@@ -2676,6 +2687,7 @@ export namespace Prisma {
       imagen: string | null
       userId: number
       autorId: number
+      destacado: boolean
       createdAt: Date
       seccionId: number | null
     }, ExtArgs["result"]["libro"]>
@@ -3111,6 +3123,7 @@ export namespace Prisma {
     readonly imagen: FieldRef<"Libro", 'String'>
     readonly userId: FieldRef<"Libro", 'Int'>
     readonly autorId: FieldRef<"Libro", 'Int'>
+    readonly destacado: FieldRef<"Libro", 'Boolean'>
     readonly createdAt: FieldRef<"Libro", 'DateTime'>
     readonly seccionId: FieldRef<"Libro", 'Int'>
   }
@@ -5762,6 +5775,7 @@ export namespace Prisma {
     imagen: 'imagen',
     userId: 'userId',
     autorId: 'autorId',
+    destacado: 'destacado',
     createdAt: 'createdAt',
     seccionId: 'seccionId'
   };
@@ -5875,6 +5889,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5964,6 +5985,7 @@ export namespace Prisma {
     imagen?: StringNullableFilter<"Libro"> | string | null
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
+    destacado?: BoolFilter<"Libro"> | boolean
     createdAt?: DateTimeFilter<"Libro"> | Date | string
     seccionId?: IntNullableFilter<"Libro"> | number | null
     seccion?: XOR<SeccionNullableScalarRelationFilter, SeccionWhereInput> | null
@@ -5979,6 +6001,7 @@ export namespace Prisma {
     imagen?: SortOrderInput | SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    destacado?: SortOrder
     createdAt?: SortOrder
     seccionId?: SortOrderInput | SortOrder
     seccion?: SeccionOrderByWithRelationInput
@@ -5997,6 +6020,7 @@ export namespace Prisma {
     imagen?: StringNullableFilter<"Libro"> | string | null
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
+    destacado?: BoolFilter<"Libro"> | boolean
     createdAt?: DateTimeFilter<"Libro"> | Date | string
     seccionId?: IntNullableFilter<"Libro"> | number | null
     seccion?: XOR<SeccionNullableScalarRelationFilter, SeccionWhereInput> | null
@@ -6012,6 +6036,7 @@ export namespace Prisma {
     imagen?: SortOrderInput | SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    destacado?: SortOrder
     createdAt?: SortOrder
     seccionId?: SortOrderInput | SortOrder
     _count?: LibroCountOrderByAggregateInput
@@ -6032,6 +6057,7 @@ export namespace Prisma {
     imagen?: StringNullableWithAggregatesFilter<"Libro"> | string | null
     userId?: IntWithAggregatesFilter<"Libro"> | number
     autorId?: IntWithAggregatesFilter<"Libro"> | number
+    destacado?: BoolWithAggregatesFilter<"Libro"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Libro"> | Date | string
     seccionId?: IntNullableWithAggregatesFilter<"Libro"> | number | null
   }
@@ -6209,6 +6235,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    destacado?: boolean
     createdAt?: Date | string
     seccion?: SeccionCreateNestedOneWithoutLibroInput
     autor: AutorCreateNestedOneWithoutLibroInput
@@ -6223,6 +6250,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -6232,6 +6260,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccion?: SeccionUpdateOneWithoutLibroNestedInput
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
@@ -6246,6 +6275,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -6258,6 +6288,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -6267,6 +6298,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6278,6 +6310,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -6544,6 +6577,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -6583,6 +6621,7 @@ export namespace Prisma {
     imagen?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    destacado?: SortOrder
     createdAt?: SortOrder
     seccionId?: SortOrder
   }
@@ -6602,6 +6641,7 @@ export namespace Prisma {
     imagen?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    destacado?: SortOrder
     createdAt?: SortOrder
     seccionId?: SortOrder
   }
@@ -6614,6 +6654,7 @@ export namespace Prisma {
     imagen?: SortOrder
     userId?: SortOrder
     autorId?: SortOrder
+    destacado?: SortOrder
     createdAt?: SortOrder
     seccionId?: SortOrder
   }
@@ -6641,6 +6682,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6799,6 +6848,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type SeccionUpdateOneWithoutLibroNestedInput = {
@@ -7044,6 +7097,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -7070,6 +7128,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7104,6 +7170,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    destacado?: boolean
     createdAt?: Date | string
     seccion?: SeccionCreateNestedOneWithoutLibroInput
     autor: AutorCreateNestedOneWithoutLibroInput
@@ -7116,6 +7183,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -7157,6 +7225,7 @@ export namespace Prisma {
     imagen?: StringNullableFilter<"Libro"> | string | null
     userId?: IntFilter<"Libro"> | number
     autorId?: IntFilter<"Libro"> | number
+    destacado?: BoolFilter<"Libro"> | boolean
     createdAt?: DateTimeFilter<"Libro"> | Date | string
     seccionId?: IntNullableFilter<"Libro"> | number | null
   }
@@ -7300,6 +7369,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    destacado?: boolean
     createdAt?: Date | string
     seccion?: SeccionCreateNestedOneWithoutLibroInput
     user: UserCreateNestedOneWithoutLibroInput
@@ -7312,6 +7382,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     userId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -7347,6 +7418,7 @@ export namespace Prisma {
     genero: string
     descripcion?: string | null
     imagen?: string | null
+    destacado?: boolean
     createdAt?: Date | string
     autor: AutorCreateNestedOneWithoutLibroInput
     user: UserCreateNestedOneWithoutLibroInput
@@ -7360,6 +7432,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
   }
 
@@ -7396,6 +7469,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -7405,6 +7479,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccion?: SeccionUpdateOneWithoutLibroNestedInput
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
@@ -7417,6 +7492,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7428,6 +7504,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7439,6 +7516,7 @@ export namespace Prisma {
     descripcion?: string | null
     imagen?: string | null
     userId: number
+    destacado?: boolean
     createdAt?: Date | string
     seccionId?: number | null
   }
@@ -7448,6 +7526,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccion?: SeccionUpdateOneWithoutLibroNestedInput
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
@@ -7460,6 +7539,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7471,6 +7551,7 @@ export namespace Prisma {
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     seccionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7483,6 +7564,7 @@ export namespace Prisma {
     imagen?: string | null
     userId: number
     autorId: number
+    destacado?: boolean
     createdAt?: Date | string
   }
 
@@ -7491,6 +7573,7 @@ export namespace Prisma {
     genero?: StringFieldUpdateOperationsInput | string
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     autor?: AutorUpdateOneRequiredWithoutLibroNestedInput
     user?: UserUpdateOneRequiredWithoutLibroNestedInput
@@ -7504,6 +7587,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7515,6 +7599,7 @@ export namespace Prisma {
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     autorId?: IntFieldUpdateOperationsInput | number
+    destacado?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

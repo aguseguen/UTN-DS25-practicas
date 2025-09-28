@@ -137,6 +137,7 @@ exports.Prisma.LibroScalarFieldEnum = {
   imagen: 'imagen',
   userId: 'userId',
   autorId: 'autorId',
+  destacado: 'destacado',
   createdAt: 'createdAt',
   seccionId: 'seccionId'
 };

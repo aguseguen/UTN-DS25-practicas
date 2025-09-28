@@ -27,6 +27,7 @@ model Libro {
   imagen      String?
   userId      Int
   autorId     Int
+  destacado   Boolean  @default(false)
   createdAt   DateTime @default(now())
   seccion     Seccion? @relation(fields: [seccionId], references: [id])
   seccionId   Int?

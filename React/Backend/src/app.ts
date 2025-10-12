@@ -16,6 +16,8 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0'
 const app = express();
 
 //Middlewares
@@ -46,8 +48,6 @@ app.use('/api/secciones', seccionRoutes);
 // Middleware de manejo de errores
 app.use(handleError);
 
-const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0'
 //Iniciar servidor
 app.listen(Number(PORT), HOST, () => {
     console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);

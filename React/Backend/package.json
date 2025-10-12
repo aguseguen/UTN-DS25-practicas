@@ -3,11 +3,14 @@
   "name": "libreria-api",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
-  "start": "node dist/app.js",
-  "dev": "ts-node-dev src/app.ts",
-  "build": "tsc"
-},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "concurrently \"nodemon src/app.ts\" \"npx prisma studio --schema=./prisma/schema.prisma\"",
+    "seed": "prisma db seed",
+    "db:sync": "prisma db push && prisma db seed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

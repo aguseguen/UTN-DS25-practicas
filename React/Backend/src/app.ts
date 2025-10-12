@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { libroRoutes } from './routes/libro.routes';
 import { userRoutes } from './routes/user.routes';
 import { autorRoutes } from './routes/autor.routes';

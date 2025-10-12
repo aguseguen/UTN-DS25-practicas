@@ -61,3 +61,15 @@ export async function deleteUser(req: Request<{ id: string }>, res: Response, ne
         next(error);
     }
     }
+
+export const getMyProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // El middleware de autenticación ya verificó el token y añadió 'req.user'
+    // TypeScript puede que no lo sepa, así que lo "forzamos" un poco.
+    const userId = (req as any).user.id; 
+    const userProfile = await userService.getUserProfileById(userId);
+    res.json(userProfile);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { setToken } from "../../helpers/auth"; 
 
 interface LoginResponse {
@@ -9,6 +10,7 @@ interface LoginResponse {
 }
 
 const LoginForm = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +40,7 @@ const LoginForm = () => {
       }
       
       if (result.success && result.token) {
-        setToken(result.token);
+        login(result.token); // Actualiza el contexto global
         navigate("/"); // Redirige a la página de inicio
       } else {
         throw new Error("Respuesta inesperada del servidor.");

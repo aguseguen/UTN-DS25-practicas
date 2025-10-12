@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LoginForm from '../components/auth/LoginForm';
 import RegistroForm from '../components/auth/RegistroForm';
-import '../AuthPage.css'; // Crearemos este archivo para los estilos
+import '../styles/AuthPage.css'; // Crearemos este archivo para los estilos
 
 const AuthPage = () => {
   // Este estado controla si mostramos el formulario de Login o el de Registro.

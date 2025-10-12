@@ -1,9 +1,15 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Nav = () => {
-    // Por ahora, simularemos que el usuario no está logueado.
-    // Más adelante, esto dependerá de si existe un token o no.
-    const isUserLoggedIn = false; 
+    const { isAuthenticated,logout, user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/auth');
+    };
+
 
     return (
         <nav className="main-nav">
@@ -16,11 +22,11 @@ const Nav = () => {
                 <li><NavLink to="/contacto">Contacto</NavLink></li>
                 
                 {/* --- LÓGICA CORREGIDA --- */}
-                {isUserLoggedIn ? (
+                {isAuthenticated ? (
                     // Si el usuario ESTÁ logueado
                     <>
-                        <li><NavLink to="/mi-cuenta">Mi Cuenta</NavLink></li>
-                        <li><button>Cerrar Sesión</button></li>
+                        <li><NavLink to="/mi-cuenta">Mi Cuenta {user.email}</NavLink></li>
+                        <li><button onClick={handleLogout}>Cerrar Sesión</button></li>
                     </>
                 ) : (
                     // Si el usuario NO ESTÁ logueado

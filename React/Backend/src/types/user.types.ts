@@ -6,7 +6,7 @@ export type UserData = {
     apellido: string;
     fechaNac: Date;
     sexo: string;
-    temaFav?: string;
+    temaFav?: string | null;
     email: string;
     role: Role;
     createdAt: Date;

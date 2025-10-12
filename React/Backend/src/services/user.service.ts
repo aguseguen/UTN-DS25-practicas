@@ -6,6 +6,10 @@ import type { Role, CreateUserRequest, UpdateUserRequest, UserData } from '../ty
 const toUser = (u: PrismaUser): UserData => ({
     id: u.id,
     nombre: u.nombre,
+    apellido: u.apellido,
+    fechaNac: u.fechaNac,
+    sexo: u.sexo,
+    temaFav: u.temaFav ?? undefined,
     email: u.email,
     role: u.role as unknown as Role,
     createdAt: u.createdAt,
@@ -55,6 +59,10 @@ export async function createUser(req: CreateUserRequest): Promise<UserData> {
       password: hashedPassword,
       role: req.role as unknown as Role,
       email: (req.email).toLowerCase().trim(),
+      apellido: '',
+      fechaNac: new Date(),
+      sexo: '',
+      temaFav: '',
     },
   });
   return toUser(created);
@@ -91,7 +99,9 @@ export async function updateUser(id: number, req: UpdateUserRequest): Promise<Us
     error.statusCode = 404;
     throw error;
   }
-  throw e;
+  const error = new Error('Error al actualizar el usuario') as any;
+  error.statusCode = 500;
+  throw error;
 }}
 
 // eliminar usuario
@@ -116,3 +126,17 @@ export async function deleteUser(id: number): Promise<UserData> {
     throw e;
   }
 }
+
+export const getUserProfileById = async (id: number) => {
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+
+  if (!user) {
+    throw new Error('Usuario no encontrado.');
+  }
+
+  // ¡Fundamental! Nunca devolver la contraseña.
+  const { password, ...userProfile } = user;
+  return userProfile;
+};

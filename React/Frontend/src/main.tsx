@@ -8,9 +8,16 @@ import HomePage from './pages/HomePage';
 import GeneroPage from './pages/GeneroPage';
 import ContactoPage from './pages/ContactoPage';
 import AuthPage from './pages/AuthPage'; 
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import MiCuentaPage from './pages/MiCuentaPage';
+
+// Estilos globales
+import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         {/* Ruta para Login y Registro (no usa el layout principal) */}
@@ -23,7 +30,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/genero/:genero" element={<GeneroPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           
-          {/* Ya no necesitamos la ruta /registro aquí */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/mi-cuenta" element={<MiCuentaPage />} />
+          </Route>
         </Route>
 
         {/* Ruta para páginas no encontradas */}
@@ -36,5 +45,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         } />
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>,
 );

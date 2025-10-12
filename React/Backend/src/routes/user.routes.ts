@@ -7,6 +7,10 @@ import { createUserSchema, updateUserSchema } from '../validations/user.validati
 const router = Router();
 // Rutas Públicas
 router.get(
+    '/profile',
+    authenticate,
+    userController.getMyProfile);
+router.get(
     '/',
     authenticate,
     authorize('ADMIN'),
@@ -33,5 +37,7 @@ router.delete(
     authenticate,
     authorize('ADMIN'),
     userController.deleteUser);
+
+
 
 export const userRoutes = router;

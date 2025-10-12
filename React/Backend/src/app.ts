@@ -36,11 +36,12 @@ const publicPath = path.resolve(__dirname, '../public');
 app.use('/public', express.static(publicPath));
 
 //Rutas
+app.use('/api/auth', authRoutes);
 app.use('/api/libros', libroRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/autores', autorRoutes);
 app.use('/api/secciones', seccionRoutes);
-app.use('/api/auth', authRoutes);
+
 
 
 // Middleware de manejo de errores

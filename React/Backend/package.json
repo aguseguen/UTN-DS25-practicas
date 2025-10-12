@@ -3,12 +3,11 @@
   "name": "libreria-api",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx --watch src/app.ts",
-    "start": "node dist/app.ts",
-    "build": "tsc"
-  },
+"scripts": {
+  "start": "node dist/app.js",
+  "dev": "ts-node-dev src/app.ts",
+  "build": "tsc"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

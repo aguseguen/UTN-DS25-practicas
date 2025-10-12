@@ -13,6 +13,10 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   nombre    String
+  apellido  String
+  fechaNac  DateTime
+  sexo      String
+  temaFav   String?
   password  String
   createdAt DateTime @default(now())
   role      Role     @default(USER)
@@ -25,14 +29,14 @@ model Libro {
   genero      String
   descripcion String?
   imagen      String?
-  userId      Int
+  userId      Int?
   autorId     Int
   destacado   Boolean  @default(false)
   createdAt   DateTime @default(now())
   seccion     Seccion? @relation(fields: [seccionId], references: [id])
   seccionId   Int?
   autor       Autor    @relation(fields: [autorId], references: [id])
-  user        User     @relation(fields: [userId], references: [id])
+  user        User?    @relation(fields: [userId], references: [id])
 }
 
 model Autor {

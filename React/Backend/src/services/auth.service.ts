@@ -2,6 +2,40 @@ import prisma from '../config/prisma';
 import bcrypt from 'bcrypt';
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 
+export async function register(
+  email: string,
+  password: string,
+  nombre: string,
+  apellido: string,
+  fechaNac: Date,
+  sexo: string,
+  temaFav?: string,
+) {
+  // 1) Verificar si el usuario ya existe
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+  if (existingUser) {
+    throw new Error('El usuario ya existe');
+  }
+
+  // 2) Hashear la contraseña
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
+  // 3) Crear el usuario
+  const user = await prisma.user.create({
+    data: {
+      email,
+      nombre,
+      apellido,
+      fechaNac,
+      sexo,
+      temaFav: temaFav ?? '',
+      role: 'USER',
+      password: hashedPassword,
+    },
+  });
+
+  return user;
+}
 
 export async function login(email: string, password: string) {
     // 1) Buscar usuario por email

@@ -3,6 +3,10 @@ export type Role = 'USER' | 'ADMIN';
 export type UserData = {
     id: number;
     nombre: string;
+    apellido: string;
+    fechaNac: Date;
+    sexo: string;
+    temaFav?: string;
     email: string;
     role: Role;
     createdAt: Date;

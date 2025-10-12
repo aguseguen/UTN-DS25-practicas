@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import App from 'src/App';
-import HomePage from 'src/pages/HomePage';
-import LoginPage from 'src/pages/LoginPage';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+// Vistas principales y layout
+import App from './App';
+import HomePage from './pages/HomePage';
 import GeneroPage from './pages/GeneroPage';
 import ContactoPage from './pages/ContactoPage';
-import RegistroPage from './pages/RegistroPage';
-
+import AuthPage from './pages/AuthPage'; 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* Ruta para el Login (no usa el layout principal) */}
-        <Route path="/login" element={<LoginPage />} />
+        {/* Ruta para Login y Registro (no usa el layout principal) */}
+        <Route path="/auth" element={<AuthPage />} />
 
         {/* Rutas que usan el Layout Principal (Header, Nav, Footer) */}
         <Route path="/" element={<App />}>
@@ -23,8 +22,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route index element={<HomePage />} />
           <Route path="/genero/:genero" element={<GeneroPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
-          <Route path="/registro" element={<RegistroPage />} />
+          
+          {/* Ya no necesitamos la ruta /registro aquí */}
         </Route>
+
+        {/* Ruta para páginas no encontradas */}
         <Route path="*" element={
           <main style={{ padding: "1rem" }}>
             <h2>¡Oops! Página no encontrada (404)</h2>

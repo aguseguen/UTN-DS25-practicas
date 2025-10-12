@@ -1,12 +1,16 @@
+version: '3.8'
+
 services:
   # Frontend React
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    container_name: app_frontend
-    env_file:
-      - ./Frontend/.env
+    container_name: libreria_frontend
+    environment:
+      # Le decimos al frontend dónde encontrar el backend. 
+      # 'backend' es el nombre del servicio, Docker lo resuelve.
+      VITE_API_BASE_URL: http://backend:3000/api 
     ports:
       - "5173:5173"
     depends_on:
@@ -16,39 +20,55 @@ services:
       - /app/node_modules
     networks:
       - app-network
+
   # Backend Node.js
   backend:
     build:
       context: ./Backend
       dockerfile: Dockerfile
-    container_name: app_backend
-    env_file:
-      - ./Backend/.env
+    container_name: libreria_backend
+    # Inyectamos las variables desde el .env de la raíz
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
     ports:
       - "3000:3000"
+      - "5555:5555" # Puerto para Prisma Studio
     depends_on:
-      - db
+      db:
+        condition: service_healthy # No arranca hasta que la BD esté lista
     volumes:
       - ./Backend:/app
       - /app/node_modules
+    # Comando para automatizar migraciones y arranque
+    command: sh -c "npx prisma migrate deploy && npx prisma generate && npm run dev"
     networks:
       - app-network
+
   # Base de Datos PostgreSQL
   db:
     image: postgres:14-alpine
-    container_name: app_db
-    env_file:
-      - ./Backend/.env
+    container_name: libreria_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./Backend/prisma/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - app-network
+
 networks:
   app-network:
     driver: bridge
+
 volumes:
   postgres_data:
     driver: local

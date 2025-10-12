@@ -4,8 +4,8 @@ import { Request, Response, NextFunction } from 'express';
 export const validate = (schema: ZodType) => { 
     return async (req: Request, res: Response, next: NextFunction) => { 
         try {
-            const validatedData = await schema.parseAsync({ body: req.body });
-            req.body = validatedData.body;
+            const validatedData = await schema.parseAsync(req.body);
+            req.body = validatedData;
             next();
         } catch (error) {
             if (error instanceof ZodError) {

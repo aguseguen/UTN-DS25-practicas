@@ -16,12 +16,11 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 
 //Middlewares
 const corsOptions = {
-    origin: 'http://localhost:5173', //Front
+    origin: process.env.FRONT_URL || 'http://localhost:5173', //Front
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204
@@ -47,7 +46,9 @@ app.use('/api/secciones', seccionRoutes);
 // Middleware de manejo de errores
 app.use(handleError);
 
+const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0'
 //Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor de la API corriendo en http://localhost:${PORT}`);
+app.listen(Number(PORT), HOST, () => {
+    console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });

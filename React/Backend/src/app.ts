@@ -1,21 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import { libroRoutes } from './routes/libro.routes';
-import { userRoutes } from './routes/user.routes';
-import { autorRoutes } from './routes/autor.routes';
-import { seccionRoutes } from './routes/seccion.routes';
-import { authRoutes } from './routes/auth.routes';
-import { handleError } from './middlewares/error.middleware';
-import { logRequest } from './middlewares/logger.middleware';
+import dotenv from 'dotenv';
+import { libroRoutes } from './routes/libro.routes.js';
+import { userRoutes } from './routes/user.routes.js';
+import { autorRoutes } from './routes/autor.routes.js';
+import { seccionRoutes } from './routes/seccion.routes.js';
+import { authRoutes } from './routes/auth.routes.js';
+import { handleError } from './middlewares/error.middleware.js';
+import { logRequest } from './middlewares/logger.middleware.js';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+dotenv.config();
 
-if (process.env.NODE_ENV !== 'production') {
-  await import('dotenv/config');
-}
 
 
 const PORT = process.env.PORT || 3000;
@@ -24,7 +20,7 @@ const app = express();
 
 //Middlewares
 const corsOptions = {
-    origin: process.env.FRONT_URL || 'http://localhost:5173', //Front
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173', //Front
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204

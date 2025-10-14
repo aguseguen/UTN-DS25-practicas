@@ -1,5 +1,5 @@
 import prisma from '../config/prisma';
-import type { Libro as PrismaLibro, Autor, Seccion } from "../generated/prisma";
+import type { Libro as PrismaLibro, Autor, Seccion } from "@prisma/client";
 import type { LibroData, CreateLibroRequest, UpdateLibroRequest, GetLibrosPorGeneroRequest } from '../types/libro.types';
 
 const toLibro = (l: PrismaLibro & { autor: Autor, seccion: Seccion | null }): LibroData => ({

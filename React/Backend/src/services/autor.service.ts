@@ -1,5 +1,5 @@
 import prisma from '../config/prisma';
-import { Autor as PrismaAutor } from '../generated/prisma';
+import type { Autor as PrismaAutor } from '@prisma/client';
 import type { CreateAutorRequest, UpdateAutorRequest, GetAutorRequest, DeleteAutorRequest, CreateSeccionRequest, AutorData } from '../types/libro.types';
 
 

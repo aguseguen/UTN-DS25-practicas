@@ -1,5 +1,5 @@
 import  prisma  from '../config/prisma';
-import { Seccion as PrismaSeccion } from '../generated/prisma';
+import type { Seccion as PrismaSeccion } from '@prisma/client';
 import type { CreateSeccionRequest, UpdateSeccionRequest, GetSeccionRequest, DeleteSeccionRequest, SeccionData } from '../types/libro.types';
 
 const toSeccion = (s: PrismaSeccion): SeccionData => ({

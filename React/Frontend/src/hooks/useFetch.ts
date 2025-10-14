@@ -25,7 +25,7 @@ export function useFetch<T>(url: string, options: RequestInit = {}, requireAuth:
         const token = getToken();
         
         if (requireAuth && !token) {
-          navigate("/login");
+          navigate("/auth");
           return;
         }
         
@@ -42,7 +42,7 @@ export function useFetch<T>(url: string, options: RequestInit = {}, requireAuth:
 
         if (res.status === 401 && requireAuth) {
           clearToken();
-          navigate("/login");
+          navigate("/auth");
           return;
         }
 

@@ -1,7 +1,6 @@
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { setToken } from "../../helpers/auth"; 
 
 interface LoginResponse {
   success: boolean;
@@ -24,7 +23,7 @@ const LoginForm = () => {
 
     try {
       // Usamos la variable de entorno para la URL de la API
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
       
       const res = await fetch(`${apiBaseUrl}/auth/login`, {
         method: "POST",

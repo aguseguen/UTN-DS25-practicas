@@ -21,7 +21,7 @@ const MiCuentaPage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+        const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
         const token = localStorage.getItem('token'); 
 
         const response = await fetch(`${apiBaseUrl}/users/profile`, {

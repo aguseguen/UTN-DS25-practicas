@@ -5,8 +5,10 @@ import { useFetch } from '../hooks/useFetch';
 type LibrosDestacadosResponse = Libro[];
 
 function HomePage() {
-  const url = 'http://localhost:3000/api/libros/destacados';
-  const { data: libros, loading, error } = useFetch<LibrosDestacadosResponse>(url, {}, true);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const url = `${apiUrl}/libros/destacados`;
+  // Página pública: no requiere autenticación
+  const { data: libros, loading, error } = useFetch<LibrosDestacadosResponse>(url, {}, false);
 
   if (loading) {
     return <div className="container"><p>Cargando libros...</p></div>;

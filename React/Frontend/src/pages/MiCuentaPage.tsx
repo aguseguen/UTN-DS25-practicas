@@ -1,4 +1,4 @@
-import '../styles/MiCuentaPage.css'; 
+import '../styles/MicuentaPage.css'; 
 import { useState, useEffect } from 'react';
 
 // Creamos un tipo para los datos del perfil que vamos a recibir

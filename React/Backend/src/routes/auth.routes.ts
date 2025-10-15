@@ -8,7 +8,7 @@ const router = Router();
 // Rutas Públicas
 router.post('/register', validate(registerSchema), authController.registerController);
 // Deshabilitamos validación en login para aislar el 400 por Zod
-router.post('/login', authController.loginController);
+router.post('/login', validate(loginSchema), authController.loginController);
 
 export const authRoutes = router;
 

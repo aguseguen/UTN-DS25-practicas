@@ -8,7 +8,7 @@ function HomePage() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const url = `${apiUrl}/libros/destacados`;
   // Página pública: no requiere autenticación
-  const { data: libros, loading, error } = useFetch<LibrosDestacadosResponse>(url, {}, false);
+  const { data: libros, loading, error } = useFetch<LibrosDestacadosResponse>(url, {}, true);
 
   if (loading) {
     return <div className="container"><p>Cargando libros...</p></div>;

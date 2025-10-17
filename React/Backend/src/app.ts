@@ -47,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 // Logger Middleware
 app.use(logRequest);
 const publicPath = path.resolve(__dirname, '../public');
-app.use('/public', express.static(publicPath));
+app.use(express.static(publicPath));
 // Health check
 app.get('/healthz', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });

@@ -8,7 +8,7 @@ export const registerSchema = z.object({
     password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres."),
     
     // Campo requerido, con el nombre correcto y esperando un string de fecha
-    fechaNac: z.string().datetime('La fecha de nacimiento es requerida.'),
+    fechaNac: z.string().nonempty('La fecha de nacimiento es requerida.'),
     
     // Campo requerido, con los valores correctos en minúscula
     sexo: z.enum(['femenino', 'masculino', 'otro'], {

@@ -19,6 +19,7 @@ const Nav = () => {
                 <li><NavLink to="/genero/ciencia-ficcion">Ciencia Ficción</NavLink></li>
                 <li><NavLink to="/genero/romance">Romance</NavLink></li>
                 <li><NavLink to="/genero/psicologia">Psicología</NavLink></li>
+                <li><NavLink to="/catalogo">Catálogo</NavLink></li>
                 <li><NavLink to="/contacto">Contacto</NavLink></li>
                 
                 {/* --- LÓGICA CORREGIDA --- */}

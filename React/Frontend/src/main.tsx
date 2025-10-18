@@ -11,6 +11,7 @@ import AuthPage from './pages/AuthPage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MiCuentaPage from './pages/MiCuentaPage';
+import CatalogoPage from './pages/CatalogoPage';
 
 // Estilos globales
 import './styles/index.css';
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           {/* La página de inicio */}
           <Route index element={<HomePage />} />
           <Route path="/genero/:genero" element={<GeneroPage />} />
+          <Route path="/catalogo" element={<CatalogoPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           
           <Route element={<ProtectedRoute />}>

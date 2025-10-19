@@ -1,45 +1,165 @@
+.mi-cuenta-status {
+  max-width: 640px;
+  margin: 60px auto;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: #f5f5f5;
+  color: #374151;
+  text-align: center;
+  font-weight: 500;
+}
+
+.mi-cuenta-status-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
 .mi-cuenta-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 40px 20px;
+  padding: 48px 20px 64px;
 }
 
 .mi-cuenta-card {
   width: 100%;
-  max-width: 600px;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.mi-cuenta-card h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  color: #333;
-}
-
-.info-group {
+  max-width: 840px;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f1 100%);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  padding: 36px 40px;
   display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.info-group:last-child {
-  border-bottom: none;
+.mi-cuenta-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.mi-cuenta-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #2c2c2c;
+  color: #fdf8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.mi-cuenta-header-info h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #2c2c2c;
+}
+
+.mi-cuenta-email {
+  color: #6b7280;
+  margin: 6px 0 10px;
+  font-size: 0.95rem;
+}
+
+.mi-cuenta-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mi-cuenta-role.is-admin {
+  background: rgba(217, 108, 76, 0.18);
+  color: #b4532a;
+}
+
+.mi-cuenta-role.is-user {
+  background: rgba(79, 209, 197, 0.15);
+  color: #0f766e;
+}
+
+.mi-cuenta-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mi-cuenta-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 8px 20px rgba(148, 163, 184, 0.15);
 }
 
 .info-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6b7280;
   font-weight: 600;
-  color: #555;
 }
 
 .info-value {
-  color: #333;
-  background-color: #f8f9fa;
-  padding: 5px 10px;
-  border-radius: 4px;
+  font-size: 1.05rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.mi-cuenta-highlight {
+  background: rgba(217, 108, 76, 0.12);
+  border: 1px solid rgba(217, 108, 76, 0.35);
+  border-radius: 18px;
+  padding: 24px 22px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.mi-cuenta-highlight h2 {
+  margin-bottom: 8px;
+  color: #b4532a;
+  font-size: 1.25rem;
+}
+
+.mi-cuenta-highlight p {
+  color: #4b5563;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .mi-cuenta-card {
+    padding: 28px;
+    border-radius: 20px;
+  }
+
+  .mi-cuenta-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mi-cuenta-avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 1.6rem;
+  }
 }

@@ -10,8 +10,10 @@ import ContactoPage from './pages/ContactoPage';
 import AuthPage from './pages/AuthPage'; 
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
 import MiCuentaPage from './pages/MiCuentaPage';
 import CatalogoPage from './pages/CatalogoPage';
+import AdminNuevoLibroPage from './pages/AdminNuevoLibroPage';
 
 // Estilos globales
 import './styles/index.css';
@@ -34,6 +36,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           
           <Route element={<ProtectedRoute />}>
             <Route path="/mi-cuenta" element={<MiCuentaPage />} />
+            <Route element={<AdminRoute />}>
+              <Route path="/admin/libros/nuevo" element={<AdminNuevoLibroPage />} />
+            </Route>
           </Route>
         </Route>
 

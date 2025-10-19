@@ -1,4 +1,4 @@
-/* --- RESET BÁSICO Y ESTILOS GLOBALES --- */
+/* --- RESET GLOBAL --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,13 +6,16 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: #FDF8F0;
     color: #2C2C2C;
     line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     color: #D96C4C;
 }
 
@@ -27,7 +30,7 @@ a {
     padding: 0 20px;
 }
 
-/* --- CABECERA (HEADER) --- */
+/* --- CABECERA --- */
 .site-header {
     background-color: #D96C4C;
     padding: 15px 20px;
@@ -39,13 +42,14 @@ a {
     width: auto;
 }
 
-/* --- NAVEGACIÓN (NAV) --- */
+/* --- NAVEGACION --- */
 .main-nav {
     background-color: #2C2C2C;
-    padding: 15px 0;
+    padding: 14px 0;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .main-nav ul {
@@ -53,26 +57,101 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 20px;
 }
 
-.main-nav ul li a {
+.nav-link {
     color: #FDF8F0;
-    padding: 10px 20px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    padding: 10px 18px;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.main-nav ul li a:hover {
-    color: #E89A7A;
+.nav-link:hover,
+.nav-link.is-active {
+    color: #FFFFFF;
 }
 
-/* --- CONTENIDO PÁGINA PRINCIPAL (INDEX) --- */
+.nav-link-pill {
+    background: rgba(217, 108, 76, 0.35);
+    border: 1px solid rgba(217, 108, 76, 0.6);
+}
+
+.nav-link-pill:hover,
+.nav-link-pill.is-active {
+    background: #D96C4C;
+    box-shadow: 0 10px 18px rgba(217, 108, 76, 0.35);
+}
+
+.nav-account {
+    margin-left: 12px;
+}
+
+.nav-account-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    color: #FDF8F0;
+    min-width: 160px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-account-link .account-label {
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.nav-account-link .account-email {
+    font-size: 0.9rem;
+    color: rgba(253, 248, 240, 0.8);
+    word-break: break-all;
+}
+
+.nav-account-link:hover,
+.nav-account-link.is-active {
+    background: rgba(255, 255, 255, 0.24);
+    transform: translateY(-2px);
+}
+
+.logout-button {
+    border: 1px solid rgba(253, 248, 240, 0.55);
+    background: transparent;
+    color: #FDF8F0;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.logout-button:hover {
+    background: #FDF8F0;
+    color: #2C2C2C;
+    box-shadow: 0 10px 18px rgba(253, 248, 240, 0.3);
+}
+
+.logout-button:focus-visible {
+    outline: 2px solid #FDF8F0;
+    outline-offset: 3px;
+}
+
+/* --- HOME --- */
 .genre-section {
-    background-color: #fff;
+    background-color: #FFFFFF;
     border: 1px solid #EAEAEA;
     padding: 20px;
     margin-bottom: 25px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
 }
 
 .genre-section h3 {
@@ -88,80 +167,202 @@ a {
 .featured-book img {
     max-width: 150px;
     height: auto;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.12);
     margin-bottom: 15px;
 }
 
-/* --- CUADRÍCULA DE LIBROS (PÁGINAS DE SECCIÓN) --- */
+/* --- GRID LIBROS --- */
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+@media (max-width: 1200px) {
+    .book-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .book-card {
-    background: #fff;
+    background: #FFFFFF;
     border: 1px solid #EAEAEA;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: 100%;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* REGLA FINAL PARA LAS PORTADAS */
-.book-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain; 
-    margin-bottom: 15px;
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
-.book-card h4 {
-    margin-bottom: 5px;
+.book-cover {
+    width: 180px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: #FAFAFA;
 }
 
-.book-card .author {
+.book-title {
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #D96C4C;
+}
+
+.book-author {
     font-style: italic;
-    color: #666;
-    margin-bottom: 10px;
+    color: #666666;
+    margin-bottom: 12px;
 }
 
-.book-card .description {
-    font-size: 0.9em;
-    margin-top: auto; 
+.book-description {
+    font-size: 0.92rem;
+    color: #374151;
+    margin-top: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* --- PÁGINA DE CONTACTO --- */
-.pagina-contacto {
+/* --- PAGINA DE CONTACTO --- */
+.contact-page {
     display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-top: 40px;
+    flex-direction: column;
+    gap: 32px;
 }
 
-.info-contacto,
+.contact-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.contact-header p {
+    margin-top: 12px;
+    color: #4B5563;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    align-items: stretch;
+}
+
+.contact-card {
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-info p {
+    margin-bottom: 12px;
+    color: #4B5563;
+}
+
+.contact-info strong {
+    display: inline-block;
+    color: #D96C4C;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.contact-highlight {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(217, 108, 76, 0.08);
+    border: 1px solid rgba(217, 108, 76, 0.2);
+}
+
+.contact-highlight h3 {
+    margin-bottom: 8px;
+    color: #D96C4C;
+    font-size: 1.1rem;
+}
+
+.contact-form-wrapper {
+    gap: 12px;
+}
+
+.contact-subtitle {
+    margin-bottom: 16px;
+    color: #6B7280;
+}
+
 .contact-form {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.info-contacto p {
-    margin-bottom: 1.5em;
+.contact-form .form-group {
+    margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
-    .pagina-contacto {
-        flex-direction: column;
+.form-helper {
+    font-size: 0.9rem;
+    color: #6B7280;
+}
+
+.contact-submit {
+    align-self: flex-start;
+    min-width: 180px;
+}
+
+.contact-submit:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+@media (max-width: 960px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
     }
 }
 
-/* --- FORMULARIOS --- */
-.registration-form, .contact-form {
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 24px;
+    }
+}
+
+/* --- FORMULARIOS BASE --- */
+.registration-form {
     max-width: 600px;
     margin: 30px auto;
     padding: 30px;
-    background: #fff;
+    background: #FFFFFF;
     border: 1px solid #EAEAEA;
     border-radius: 8px;
 }
@@ -180,34 +381,190 @@ a {
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group input[type="date"],
+.form-group input[type="url"],
 .form-group select,
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #FFFFFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #D96C4C;
+    box-shadow: 0 0 0 3px rgba(217, 108, 76, 0.18);
+}
+
+.field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #B91C1C;
+}
+
+.form-feedback {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.form-feedback.is-success {
+    background-color: #ECFDF5;
+    border-color: #34D399;
+    color: #047857;
+}
+
+.form-feedback.is-error {
+    background-color: #FEF2F2;
+    border-color: #FCA5A5;
+    color: #B91C1C;
 }
 
 .submit-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
     border: none;
-    border-radius: 5px;
+    border-radius: 999px;
     background-color: #D96C4C;
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .submit-btn:hover {
     background-color: #E89A7A;
+    box-shadow: 0 12px 24px rgba(217, 108, 76, 0.3);
 }
 
-/* --- PIE DE PÁGINA (FOOTER) --- */
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid #D1D5DB;
+    background: #FFFFFF;
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #F3F4F6;
+    box-shadow: 0 10px 18px rgba(148, 163, 184, 0.25);
+}
+
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- ADMIN NUEVO LIBRO --- */
+.admin-libro-page {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 60px;
+}
+
+.admin-libro-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.admin-libro-header p {
+    margin-top: 12px;
+    color: #4B5563;
+}
+
+.admin-libro-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    padding: 34px 36px;
+}
+
+.admin-libro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.admin-feedback {
+    padding: 16px 18px;
+    border-radius: 14px;
+    font-size: 0.96rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.admin-feedback.is-success {
+    background: #ECFDF5;
+    color: #047857;
+    border-color: #6EE7B7;
+}
+
+.admin-feedback.is-error {
+    background: #FEF2F2;
+    color: #B91C1C;
+    border-color: #FECACA;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.admin-form-actions .submit-btn {
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .admin-libro-card {
+        padding: 26px;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-actions {
+        justify-content: center;
+    }
+}
+
+/* --- FOOTER Y LAYOUT --- */
 .site-footer {
     background-color: #2C2C2C;
     color: #FDF8F0;
@@ -221,11 +578,11 @@ a {
 }
 
 .app-container {
-  display: flex; /* 1. Activa Flexbox */
-  flex-direction: column; /* 2. Apila los elementos verticalmente */
-  min-height: 100vh; /* 3. ¡La clave! El contenedor ocupa AL MENOS el 100% del alto de la pantalla */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .main-content {
-  flex-grow: 1; /* 4. ¡La otra clave! Hace que el contenido principal crezca para ocupar todo el espacio sobrante, empujando el footer hacia abajo */
+    flex-grow: 1;
 }

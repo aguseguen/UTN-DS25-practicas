@@ -9,6 +9,7 @@ import { authRoutes } from './routes/auth.routes.js';
 import { handleError } from './middlewares/error.middleware.js';
 import { logRequest } from './middlewares/logger.middleware.js';
 import path from 'path';
+import { contactoRoutes } from './routes/contacto.routes.js';
 
 
 dotenv.config();
@@ -59,6 +60,7 @@ app.use('/api/libros', libroRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/autores', autorRoutes);
 app.use('/api/secciones', seccionRoutes);
+app.use('/api/contacto', contactoRoutes);
 
 
 

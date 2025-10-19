@@ -54,6 +54,15 @@ model Seccion {
   libro     Libro[]
 }
 
+model MensajeContacto {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  email     String
+  asunto    String
+  mensaje   String
+  createdAt DateTime @default(now())
+}
+
 enum Role {
   USER
   ADMIN

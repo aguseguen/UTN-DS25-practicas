@@ -3,11 +3,12 @@ export interface LibroData {
   id: number;
   titulo: string;
   genero: string;
-  autor: string;
+  autor: AutorData;
   seccion: string;
   descripcion: string;
   imagen: string;
   createdAt?: Date;
+  destacado: boolean;
   updatedAt?: Date;
 }
 

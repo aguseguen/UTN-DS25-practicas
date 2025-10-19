@@ -31,7 +31,7 @@ function HomePage() {
             <div className="featured-book">
               {libro.imagen && <img src={libro.imagen} alt={`Portada de ${libro.titulo}`} />}
               <h4>{libro.titulo}</h4>
-              <p>{libro.autor}</p>
+              <p>{libro.autor.nombre}</p>
             </div>
           </section>
         ))

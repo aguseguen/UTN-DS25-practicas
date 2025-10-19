@@ -1,18 +1,35 @@
-import { LibroData } from "src/types/libro.types";
+import React from "react";
+import { LibroData as Libro } from "../types/libro.types";
 
-type BookCardProps = {
-    libro: LibroData;
+type Props = {
+  libro: Libro;
+  showDescription?: boolean;
 };
 
-function BookCard ({libro}: BookCardProps) {
-    return (
-        <div className="book-card">
-            <img src={libro.imagen} alt={`Portada de ${libro.titulo}`} />
-            <h4>{libro.titulo}</h4>
-            <p className="author">{libro.autor}</p>
-            <p className="description">{libro.descripcion}</p>
-        </div>
-    )
-};
+export default function BookCard({ libro, showDescription = true }: Props) {
+  const author =
+    (libro as any).autorNombre ??
+    (libro as any).autor?.nombre ??
+    (libro as any).autor ??
+    (libro as any).author ??
+    "";
 
-export default BookCard
+  const cover =
+    (libro as any).imagenUrl ??
+    (libro as any).imagen ??
+    (libro as any).portada ??
+    "";
+
+  return (
+    <article className="book-card">
+      {cover && (
+        <img className="book-cover" src={cover} alt={libro.titulo} />
+      )}
+      <h3 className="book-title">{libro.titulo}</h3>
+      {author && <p className="book-author">{author}</p>}
+      {showDescription && libro.descripcion && (
+        <p className="book-description">{libro.descripcion}</p>
+      )}
+    </article>
+  );
+}

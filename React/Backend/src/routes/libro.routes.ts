@@ -8,8 +8,6 @@ const router = Router();
 
 router.get(
     '/',
-    authenticate,
-    authorize('ADMIN', 'USER'),
     libroController.getAllLibros);
 router.get(
     '/destacados',

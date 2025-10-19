@@ -15,13 +15,13 @@ const toLibro = (l: PrismaLibro & { autor: Autor, seccion: Seccion | null }): Li
 });
 
 // obtener todos los libros
-export async function getAllLibros(limit: number = 10): Promise<LibroData[]> {
+export async function getAllLibros(): Promise<any[]> { 
   const libros = await prisma.libro.findMany({
-  orderBy: { id: 'asc' },
-  take: limit,
-  include: { autor: true , seccion: true },
+    orderBy: { id: 'asc' },
+    include: { autor: true , seccion: true },
   });
-  return libros.map(toLibro);
+  // Temporalmente, devolvemos los datos crudos sin el .map(toLibro)
+  return libros; 
 }
 
 // obtener libro por id 
